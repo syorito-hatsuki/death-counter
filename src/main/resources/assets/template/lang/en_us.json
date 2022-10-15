@@ -1,0 +1,7 @@
+{
+  "item.template.template_item": "Template Item",
+  "item.template.template_item.tooltip": "Template Item Tooltip",
+  "block.template.template_block": "Template Block",
+  "block.template.template_block.tooltip": "Template Block Tooltip",
+  "enchantment.template.template_enchantment": "Template Enchantment"
+}
