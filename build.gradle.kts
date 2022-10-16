@@ -26,19 +26,18 @@ repositories {
 }
 
 dependencies {
-    implementation("io.ktor:ktor-server-cors-jvm:2.1.2")
     val minecraftVersion: String by project
     minecraft("com.mojang", "minecraft", minecraftVersion)
-    
+
     val yarnMappings: String by project
     mappings("net.fabricmc", "yarn", yarnMappings, null, "v2")
-    
+
     val loaderVersion: String by project
     modImplementation("net.fabricmc", "fabric-loader", loaderVersion)
-    
+
     val fabricVersion: String by project
     modImplementation("net.fabricmc.fabric-api", "fabric-api", fabricVersion)
-    
+
     val fabricKotlinVersion: String by project
     modImplementation("net.fabricmc", "fabric-language-kotlin", fabricKotlinVersion)
 

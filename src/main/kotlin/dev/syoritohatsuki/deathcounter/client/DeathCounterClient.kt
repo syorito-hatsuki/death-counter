@@ -2,6 +2,7 @@ package dev.syoritohatsuki.deathcounter.client
 
 import dev.syoritohatsuki.deathcounter.DeathCounter.logger
 import dev.syoritohatsuki.deathcounter.client.manager.ClientConfigManager.read
+import dev.syoritohatsuki.deathcounter.util.NetworkUtil
 import freemarker.cache.ClassTemplateLoader
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
@@ -66,8 +67,6 @@ object DeathCounterClient : ClientModInitializer {
         })
     }
 
-    private fun ClientPlayNetworkHandler.getHostName(): String {
-        val ip = this.connection.address.hostname.split('.')[0].replace('-', '.')
-        return if (ip != "" && ip != "localhost") ip else "0.0.0.0"
-    }
+    private fun ClientPlayNetworkHandler.getHostName(): String =
+        NetworkUtil.isValidIPAddress(connection.address.toString())
 }
