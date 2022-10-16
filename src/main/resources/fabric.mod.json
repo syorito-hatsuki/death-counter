@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "template",
+  "id": "deathcounter",
   "version": "${version}",
-  "name": "Template Mod",
+  "name": "Death Counter",
   "description": "Mod Description",
   "authors": [
     "Syorito Hatsuki"
@@ -11,18 +11,24 @@
     "homepage": "https://syoritohatsuki.dev/"
   },
   "license": "MIT Licence",
-  "icon": "assets/template/icon.png",
+  "icon": "assets/deathcounter/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
       {
         "adapter": "kotlin",
-        "value": "dev.syoritohatsuki.template.TemplateMod"
+        "value": "dev.syoritohatsuki.deathcounter.DeathCounter"
+      }
+    ],
+    "client": [
+      {
+        "adapter": "kotlin",
+        "value": "dev.syoritohatsuki.deathcounter.client.DeathCounterClient"
       }
     ]
   },
   "mixins": [
-    "template.mixins.json"
+    "deathcounter.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.14.8",
