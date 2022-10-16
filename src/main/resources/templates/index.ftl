@@ -3,12 +3,15 @@
     <title>Death Counter</title>
     <script>
         setInterval(async function () {
-            const response = await fetch("http://${remoteIp}:1540/${player}")
-            const text = await response;
-            if (text.ok) {
-                document.getElementById("death").textContent = await text.json();
-            } else {
-                document.getElementById("death").textContent = text.status.toString()
+            try {
+                const response = await fetch("http://${remoteIp}:1540/${player}")
+                if (response.ok) {
+                    document.getElementById("death").textContent = await response.json();
+                } else {
+                    document.getElementById("death").textContent = response.status.toString()
+                }
+            } catch (e) {
+                document.getElementById("death").textContent = e
             }
         }, ${delay});
     </script>
