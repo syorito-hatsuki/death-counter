@@ -25,7 +25,7 @@ object DeathCounterClient : ClientModInitializer {
 
         lateinit var webClient: ApplicationEngine
 
-        ClientPlayConnectionEvents.JOIN.register(ClientPlayConnectionEvents.Join { handler, sender, client ->
+        ClientPlayConnectionEvents.JOIN.register(ClientPlayConnectionEvents.Join { handler, _, client ->
 
             webClient = embeddedServer(CIO, port = read().port, host = read().ip) {
                 install(FreeMarker) {
