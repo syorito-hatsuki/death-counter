@@ -1,6 +1,7 @@
 package dev.syoritohatsuki.deathcounter
 
 import com.mojang.logging.LogUtils
+import dev.syoritohatsuki.deathcounter.command.DeathListCommand
 import dev.syoritohatsuki.deathcounter.manager.DeathManager
 import dev.syoritohatsuki.deathcounter.manager.DeathManager.deaths
 import io.ktor.serialization.kotlinx.json.*
@@ -13,6 +14,7 @@ import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import kotlinx.serialization.json.Json
 import net.fabricmc.api.ModInitializer
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents.ServerStarted
@@ -22,7 +24,6 @@ import java.util.concurrent.TimeUnit
 
 object DeathCounter : ModInitializer {
 
-    const val MOD_ID = "deathcounter"
     val logger: Logger = LogUtils.getLogger()
     val json = Json { encodeDefaults = true; prettyPrint = true; ignoreUnknownKeys = true }
 
@@ -32,7 +33,7 @@ object DeathCounter : ModInitializer {
         logger.info("${javaClass.simpleName} initialized")
 
         ServerLifecycleEvents.SERVER_STARTED.register(ServerStarted {
-            webServer = embeddedServer(CIO, port = 1540, host = if (it.serverIp == "") "0.0.0.0" else it.serverIp) {
+            webServer = embeddedServer(CIO, port = 1540, host = getServerIp(it.serverIp)) {
                 install(CORS) { anyHost() }
                 install(ContentNegotiation) { json(json) }
                 routing {
@@ -57,5 +58,15 @@ object DeathCounter : ModInitializer {
             )
             return@AllowDeath true
         })
+
+        CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher, _, _ ->
+            DeathListCommand.register(dispatcher)
+        })
+    }
+
+    private fun getServerIp(serverIp: String?): String = when (serverIp) {
+        null -> "0.0.0.0"
+        "" -> "0.0.0.0"
+        else -> serverIp
     }
 }
