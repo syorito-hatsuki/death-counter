@@ -25,7 +25,7 @@ object DeathListCommand {
 
     private fun executeOwnerDeaths(context: CommandContext<ServerCommandSource>): Int {
         context.source.sendFeedback(
-            Text.literal("${context.source.playerOrThrow.entityName} died ${DeathManager.getPlayerDeathCount(context.source.playerOrThrow.entityName)} times"),
+            Text.of("${context.source.player.entityName} died ${DeathManager.getPlayerDeathCount(context.source.player.entityName)} times"),
             false
         )
         return Command.SINGLE_SUCCESS
@@ -40,7 +40,7 @@ object DeathListCommand {
         }
 
         context.source.sendFeedback(
-            Text.literal(
+            Text.of(
                 "$player died ${
                     DeathManager.getPlayerDeathCount(player)
                 } times"
@@ -53,7 +53,7 @@ object DeathListCommand {
 
     private fun executeAllDeaths(context: CommandContext<ServerCommandSource>): Int {
         context.source.sendFeedback(
-            Text.literal(
+            Text.of(
                 StringBuilder().apply {
                     append("=====[ DeathCounter List ]=====")
                     DeathManager.deaths().forEach { (name, count) ->
