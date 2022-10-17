@@ -4,7 +4,7 @@
 <img src="https://i.imgur.com/Ol1Tcf8.png" alt="" width="200" >
 
 ## Description
-
+// TODO
 
 ## Commands and permission
 |            Command           |OP|Permission|              Description           |
@@ -13,7 +13,7 @@
 |`/deathcounter all`|❌|`Coming soon`|List of available icons ID|
 |`/deathcounter [<playerName>]`|❌|`Coming soon`|List own markers|
 
-## Config
+## Client config
 ```json5
 {
     "ip": "0.0.0.0",  // Local WebUI address (Recommend keep default)
@@ -21,3 +21,24 @@
     "msDelay": 5000   // Local WebUI refresh time in seconds (more is better)
 }
 ```
+
+## Web
+### Client side WebUI
+WebUI endpoint `http://0.0.0.0:3000`
+|Request|Path|Description|
+|:-:|-|-|
+|GET|`/`|Return own death count|
+|GET|`/{playerName}`|Return count of death by playerName|
+
+### Server side API
+API endpoint is `http://yourServerIP*:1540`
+> *yourServerIP = server-ip from server.properties
+
+|Request|Path|Description|
+|:-:|-|-|
+|GET|`/`|Return Map<String, Int> object with all players|
+|GET|`/{playerName}`|Return Int count of death by playerName|
+
+## Tips
+### Adding counter in OBS
+// TODO
