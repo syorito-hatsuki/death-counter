@@ -5,7 +5,8 @@
   "name": "Death Counter",
   "description": "Death Counter with OpenAPI and client Web UI",
   "authors": [
-    "Syorito Hatsuki"
+    "Syorito Hatsuki",
+    "Nikson"
   ],
   "contact": {
     "homepage": "https://syoritohatsuki.dev/"
