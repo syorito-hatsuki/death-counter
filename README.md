@@ -4,7 +4,8 @@
 <img src="https://i.imgur.com/Ol1Tcf8.png" alt="" width="200" >
 
 ## Description
-// TODO
+Death Counter get info about how much player die from player stats, so u always get actual count*. Support [WebAPI](https://github.com/syorito-hatsuki/death-counter#server-side-api) and Client side [WebUI](https://github.com/syorito-hatsuki/death-counter#client-side-webui). Also you can see it in game using [commands](https://github.com/syorito-hatsuki/death-counter#commands-and-permission)
+> *Other mods count deaths from 0 after mod installed
 
 ## Commands and permission
 |            Command           |OP|Permission|              Description           |
