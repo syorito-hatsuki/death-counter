@@ -9,9 +9,9 @@
 ## Commands and permission
 |            Command           |OP|Permission|              Description           |
 |------------------------------|----|----------|------------------------------------|
-|`/deathcounter`|❌|`Coming soon`|All available commands|
-|`/deathcounter all`|❌|`Coming soon`|List of available icons ID|
-|`/deathcounter [<playerName>]`|❌|`Coming soon`|List own markers|
+|`/deathcounter`|❌|`deathcounter.todo`|All available commands|
+|`/deathcounter all`|❌|`deathcounter.todo`|List of available icons ID|
+|`/deathcounter [<playerName>]`|❌|`deathcounter.todo`|List own markers|
 
 ## Client config
 ```json5
