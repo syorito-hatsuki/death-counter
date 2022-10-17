@@ -10,9 +10,9 @@ Death Counter get info about how much player die from player stats, so u always 
 ## Commands and permission
 |            Command           |OP|Permission|              Description           |
 |------------------------------|----|----------|------------------------------------|
-|`/deathcounter`|❌|`deathcounter.todo`|All available commands|
-|`/deathcounter all`|❌|`deathcounter.todo`|List of available icons ID|
-|`/deathcounter [<playerName>]`|❌|`deathcounter.todo`|List own markers|
+|`/deathcounter`|❌|`deathcounter.todo`|Get your own death count|
+|`/deathcounter all`|❌|`deathcounter.todo`|Get the death count of all players|
+|`/deathcounter [<playerName>]`|❌|`deathcounter.todo`|Get a specific player death count|
 
 ## Client config
 ```json5
@@ -32,8 +32,8 @@ WebUI endpoint `http://0.0.0.0:3000`
 |GET|`/{playerName}`|Return count of death by playerName|
 
 ### Server side API
-API endpoint is `http://yourServerIP*:1540`
-> *yourServerIP = server-ip from server.properties
+API endpoint is `http://server-ip*:1540`
+> *Address will be received from server-ip param in server.properties file
 
 |Request|Path|Description|
 |:-:|-|-|
