@@ -4,7 +4,7 @@
 <img src="https://i.imgur.com/Ol1Tcf8.png" alt="" width="200" >
 
 ## Description
-Death Counter is a server-side Minecraft Fabric mod to get info about how much players die, directly from player stats, so you always get actual count. 
+Death Counter is a server-side Minecraft Fabric mod to get info about how many players die, directly from player stats, so you always get an actual count. 
 Adds support for [WebAPI](https://github.com/syorito-hatsuki/death-counter#server-side-api) and client-side [WebUI](https://github.com/syorito-hatsuki/death-counter#client-side-webui). You can also see it in-game using [commands](https://github.com/syorito-hatsuki/death-counter#commands-and-permission).
 > Other mods only start counting from zero after it's been installed. This mod, on the other hand, can also report deaths from before this mod was installed.
 
@@ -32,8 +32,8 @@ WebUI endpoint `http://0.0.0.0:3000`
 |GET|`/`|Return own death count|
 |GET|`/{playerName}`|Return count of death by playerName|
 
-### Server side API
-API endpoint is `http://server-ip*:1540`
+### Server-side API
+The API endpoint is `http://server-ip*:1540`
 > *Address will be received from server-ip param in server.properties file
 
 |Request|Path|Description|
