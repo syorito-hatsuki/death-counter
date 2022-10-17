@@ -41,5 +41,4 @@ API endpoint is `http://yourServerIP*:1540`
 |GET|`/{playerName}`|Return Int count of death by playerName|
 
 ## Tips
-### Adding counter in OBS
-// TODO
+* [Adding counter in OBS](https://github.com/syorito-hatsuki/death-counter/blob/master/obs-integration.md)
