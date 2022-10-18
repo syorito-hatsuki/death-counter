@@ -20,7 +20,7 @@ Adds support for [WebAPI](https://github.com/syorito-hatsuki/death-counter#serve
 {
     "ip": "0.0.0.0",  // Local WebUI address (Recommend keep default)
     "port": 3000,     // Local WebUI port (1024-49151)
-    "msDelay": 5000   // Local WebUI refresh time in seconds (more is better)
+    "msDelay": 5000   // Local WebUI refresh time in milliseconds (more is better)
 }
 ```
 
