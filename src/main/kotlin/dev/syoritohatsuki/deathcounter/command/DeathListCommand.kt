@@ -57,10 +57,7 @@ object DeathListCommand {
                 return Command.SINGLE_SUCCESS
             }
 
-            context.source.sendFeedback(
-                Text.of("§e§lDeathCounter Page [$page]"),
-                false
-            )
+            context.source.sendFeedback(Text.of("§e§lDeathCounter Page [$page]"), false)
 
             var index = 0
 

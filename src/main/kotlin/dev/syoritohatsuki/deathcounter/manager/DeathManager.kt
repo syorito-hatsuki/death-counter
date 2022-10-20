@@ -1,6 +1,5 @@
 package dev.syoritohatsuki.deathcounter.manager
 
-import dev.syoritohatsuki.deathcounter.DeathCounter
 import dev.syoritohatsuki.deathcounter.DeathCounter.json
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
@@ -37,7 +36,6 @@ object DeathManager {
 
         return mutableMapOf<String, Int>().apply {
             for (index in range - 9 until range) {
-                DeathCounter.logger.info(index.toString())
                 if (index < list.size) {
                     this[list[index].first] = list[index].second
                 }
