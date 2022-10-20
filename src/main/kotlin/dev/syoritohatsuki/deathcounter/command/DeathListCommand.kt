@@ -2,6 +2,7 @@ package dev.syoritohatsuki.deathcounter.command
 
 import com.mojang.brigadier.Command
 import com.mojang.brigadier.CommandDispatcher
+import com.mojang.brigadier.arguments.IntegerArgumentType
 import com.mojang.brigadier.arguments.StringArgumentType
 import com.mojang.brigadier.context.CommandContext
 import dev.syoritohatsuki.deathcounter.manager.DeathManager
@@ -14,7 +15,7 @@ object DeathListCommand {
     fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
         dispatcher.register(
             CommandManager.literal("deathcounter").executes { executeOwnerDeaths(it) }
-                .then(CommandManager.literal("all")
+                .then(CommandManager.argument("page", IntegerArgumentType.integer(1))
                     .executes { executeAllDeaths(it) })
                 .then(CommandManager.argument("playerWord", StringArgumentType.word())
                     .executes { executePlayerDeaths(it) })
@@ -40,29 +41,37 @@ object DeathListCommand {
         }
 
         context.source.sendFeedback(
-            Text.literal(
-                "$player died ${
-                    DeathManager.getPlayerDeathCount(player)
-                } times"
-            ),
-            false
+            Text.literal("§b$player died ${DeathManager.getPlayerDeathCount(player)} times"), false
         )
 
         return Command.SINGLE_SUCCESS
     }
 
     private fun executeAllDeaths(context: CommandContext<ServerCommandSource>): Int {
-        context.source.sendFeedback(
-            Text.literal(
-                StringBuilder().apply {
-                    append("=====[ DeathCounter List ]=====")
-                    DeathManager.deaths().forEach { (name, count) ->
-                        append("\n$name died $count times")
-                    }
-                    append("\n===============================")
-                }.toString()
-            ), false
-        )
+
+        val page = IntegerArgumentType.getInteger(context, "page")
+
+        DeathManager.getDeathListByPage(page).apply {
+            if (isEmpty()) {
+                context.source.sendFeedback(Text.of("Page is empty"), false)
+                return Command.SINGLE_SUCCESS
+            }
+
+            context.source.sendFeedback(
+                Text.of("§e§lDeathCounter Page [$page]"),
+                false
+            )
+
+            var index = 0
+
+            forEach { (name, count) ->
+                if (index % 2 == 0) context.source.sendFeedback(
+                    Text.of("§4    $name died $count times"),
+                    false
+                ) else context.source.sendFeedback(Text.of("§c    $name died $count times"), false)
+                index++
+            }
+        }
         return Command.SINGLE_SUCCESS
     }
 }
