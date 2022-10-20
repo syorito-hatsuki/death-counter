@@ -29,4 +29,13 @@ object DeathManager {
         death[username] = deathStat
         deathsFile.writeText(json.encodeToString(death))
     }
+
+    fun getDeathListByPage(page: Int): Map<String, Int> {
+        val list = deaths().toList().sortedByDescending { it.second }
+        val range = (9 * page)
+
+        return mutableMapOf<String, Int>().apply {
+            for (index in range - 9 until range) if (index < list.size) this[list[index].first] = list[index].second
+        }
+    }
 }

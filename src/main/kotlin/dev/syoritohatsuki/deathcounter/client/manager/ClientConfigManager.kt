@@ -1,7 +1,7 @@
 package dev.syoritohatsuki.deathcounter.client.manager
 
 import dev.syoritohatsuki.deathcounter.DeathCounter.json
-import dev.syoritohatsuki.deathcounter.dto.ClientConfig
+import dev.syoritohatsuki.deathcounter.client.dto.ClientConfig
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import java.io.File
@@ -13,9 +13,7 @@ object ClientConfigManager {
 
     init {
         if (!configFile.exists()) {
-            if (!configDir.exists()) {
-                configDir.mkdirs()
-            }
+            if (!configDir.exists()) configDir.mkdirs()
             configFile.apply {
                 createNewFile()
                 writeText(json.encodeToString(ClientConfig()))

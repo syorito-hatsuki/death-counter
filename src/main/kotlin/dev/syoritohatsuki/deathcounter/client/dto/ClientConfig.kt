@@ -1,10 +1,9 @@
-package dev.syoritohatsuki.deathcounter.dto
+package dev.syoritohatsuki.deathcounter.client.dto
 
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class ClientConfig(
-    val ip: String = "0.0.0.0",
     val port: Int = 3000,
     val msDelay: Int = 5000
 )
