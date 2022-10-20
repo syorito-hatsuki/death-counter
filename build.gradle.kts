@@ -58,6 +58,7 @@ dependencies {
     include(implementation("io.ktor:ktor-server-host-common-jvm:$ktorVersion")!!)
     include(implementation("io.ktor:ktor-utils-jvm:$ktorVersion")!!)
     include(implementation("io.ktor:ktor-websockets-jvm:$ktorVersion")!!)
+    include(implementation("org.freemarker:freemarker:2.3.31")!!)
 }
 
 tasks {
