@@ -12,13 +12,12 @@ Adds support for [WebAPI](https://github.com/syorito-hatsuki/death-counter#serve
 |            Command           |OP|Permission|              Description           |
 |------------------------------|----|----------|------------------------------------|
 |`/deathcounter`|❌|`deathcounter.todo`|Get your own death count|
-|`/deathcounter all`|❌|`deathcounter.todo`|Get the death count of all players|
+|`/deathcounter <page>`|❌|`deathcounter.todo`|Get the death count of all players|
 |`/deathcounter [<playerName>]`|❌|`deathcounter.todo`|Get a specific player death count|
 
 ## Client config
 ```json5
 {
-    "ip": "0.0.0.0",  // Local WebUI address (Recommend keep default)
     "port": 3000,     // Local WebUI port (1024-49151)
     "msDelay": 5000   // Local WebUI refresh time in milliseconds (more is better)
 }
