@@ -15,6 +15,12 @@
   "icon": "assets/deathcounter/icon.png",
   "environment": "*",
   "entrypoints": {
+    "server": [
+      {
+        "adapter": "kotlin",
+        "value": "dev.syoritohatsuki.deathcounter.DeathCounterServer"
+      }
+    ],
     "main": [
       {
         "adapter": "kotlin",

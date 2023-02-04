@@ -17,6 +17,6 @@
     </script>
 </head>
 <body>
-<p id="death"></p>
+    <p id="death"></p>
 </body>
 </html>
