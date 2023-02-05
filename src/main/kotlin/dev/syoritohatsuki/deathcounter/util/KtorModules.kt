@@ -1,6 +1,5 @@
 package dev.syoritohatsuki.deathcounter.util
 
-import dev.syoritohatsuki.deathcounter.DeathCounter
 import dev.syoritohatsuki.deathcounter.DeathCounterServer
 import dev.syoritohatsuki.deathcounter.client.manager.ClientConfigManager
 import dev.syoritohatsuki.deathcounter.manager.DeathManager
@@ -62,7 +61,7 @@ fun Application.clientModule(handler: ClientPlayNetworkHandler, client: Minecraf
 
 fun Application.serverModule() {
     install(CORS) { anyHost() }
-    install(ContentNegotiation) { json(DeathCounter.json) }
+    install(ContentNegotiation) { json(ClientConfigManager.json) }
     routing {
         get {
             call.respond(DeathManager.deaths())

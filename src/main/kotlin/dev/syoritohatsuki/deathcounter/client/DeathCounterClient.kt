@@ -22,15 +22,13 @@ import java.util.concurrent.TimeUnit
 @Environment(EnvType.CLIENT)
 object DeathCounterClient : ClientModInitializer {
 
-    val clientLogger: Logger = LogUtils.getLogger()
+    private val clientLogger: Logger = LogUtils.getLogger()
 
     override fun onInitializeClient() {
 
         lateinit var webClient: ApplicationEngine
 
         ClientPlayConnectionEvents.JOIN.register(ClientPlayConnectionEvents.Join { handler, _, client ->
-            clientLogger.info("Server is dedicate? ${client.server?.isDedicated}")
-            clientLogger.info("Server is dedicate? ${client.currentServerEntry?.isLocal}")
             webClient = embeddedServer(
                 CIO,
                 host = "0.0.0.0",

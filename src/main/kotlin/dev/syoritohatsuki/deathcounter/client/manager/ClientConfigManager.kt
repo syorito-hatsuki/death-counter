@@ -1,15 +1,17 @@
 package dev.syoritohatsuki.deathcounter.client.manager
 
-import dev.syoritohatsuki.deathcounter.DeathCounter.json
 import dev.syoritohatsuki.deathcounter.client.dto.ClientConfig
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import java.io.File
 import java.nio.file.Paths
 
 object ClientConfigManager {
+
     private val configDir: File = Paths.get("", "config", "deathcounter", "client").toFile()
     private val configFile = File(configDir, "config.json")
+    val json = Json { ignoreUnknownKeys = true; encodeDefaults = true; prettyPrint = true }
 
     init {
         if (!configFile.exists()) {

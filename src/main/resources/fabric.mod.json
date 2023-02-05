@@ -21,12 +21,6 @@
         "value": "dev.syoritohatsuki.deathcounter.DeathCounterServer"
       }
     ],
-    "main": [
-      {
-        "adapter": "kotlin",
-        "value": "dev.syoritohatsuki.deathcounter.DeathCounter"
-      }
-    ],
     "client": [
       {
         "adapter": "kotlin",
