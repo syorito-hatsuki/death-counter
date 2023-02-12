@@ -1,4 +1,4 @@
-package dev.syoritohatsuki.deathcounter.client.dto
+package dev.syoritohatsuki.deathcounter.legacy.client.dto
 
 import kotlinx.serialization.Serializable
 

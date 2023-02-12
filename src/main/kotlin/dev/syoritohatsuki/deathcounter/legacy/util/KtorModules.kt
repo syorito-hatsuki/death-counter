@@ -1,8 +1,8 @@
-package dev.syoritohatsuki.deathcounter.util
+package dev.syoritohatsuki.deathcounter.legacy.util
 
-import dev.syoritohatsuki.deathcounter.DeathCounterServer
-import dev.syoritohatsuki.deathcounter.client.manager.ClientConfigManager
-import dev.syoritohatsuki.deathcounter.manager.DeathManager
+import dev.syoritohatsuki.deathcounter.legacy.client.manager.ClientConfigManager
+import dev.syoritohatsuki.deathcounter.legacy.manager.DeathManager
+import dev.syoritohatsuki.deathcounter.legacy.server.DeathCounterServer.serverLogger
 import freemarker.cache.ClassTemplateLoader
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
@@ -70,5 +70,5 @@ fun Application.serverModule() {
             call.respond(DeathManager.getPlayerDeathCount(call.parameters["username"]!!))
         }
     }
-    DeathCounterServer.serverLogger.info("${javaClass.simpleName} WebServer started")
+    serverLogger.info("${javaClass.simpleName} WebServer started")
 }

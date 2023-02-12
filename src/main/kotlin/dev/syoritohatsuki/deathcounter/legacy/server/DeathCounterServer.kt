@@ -1,7 +1,7 @@
-package dev.syoritohatsuki.deathcounter
+package dev.syoritohatsuki.deathcounter.legacy.server
 
 import com.mojang.logging.LogUtils
-import dev.syoritohatsuki.deathcounter.util.serverModule
+import dev.syoritohatsuki.deathcounter.legacy.util.serverModule
 import io.ktor.server.application.*
 import io.ktor.server.cio.*
 import io.ktor.server.engine.*

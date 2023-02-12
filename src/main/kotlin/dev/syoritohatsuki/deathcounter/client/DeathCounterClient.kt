@@ -1,47 +1,27 @@
 package dev.syoritohatsuki.deathcounter.client
 
 import com.mojang.logging.LogUtils
-import dev.syoritohatsuki.deathcounter.client.manager.ClientConfigManager.read
-import dev.syoritohatsuki.deathcounter.util.clientModule
-import io.ktor.serialization.kotlinx.json.*
-import io.ktor.server.application.*
-import io.ktor.server.cio.*
-import io.ktor.server.engine.*
-import io.ktor.server.freemarker.*
-import io.ktor.server.plugins.contentnegotiation.*
-import io.ktor.server.response.*
-import io.ktor.server.routing.*
-import io.ktor.util.network.*
+import dev.syoritohatsuki.deathcounter.network.DEATHS
 import net.fabricmc.api.ClientModInitializer
-import net.fabricmc.api.EnvType
-import net.fabricmc.api.Environment
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking
+import net.minecraft.text.Text
 import org.slf4j.Logger
-import java.util.concurrent.TimeUnit
 
-@Environment(EnvType.CLIENT)
 object DeathCounterClient : ClientModInitializer {
 
-    private val clientLogger: Logger = LogUtils.getLogger()
+    val clientLogger: Logger = LogUtils.getLogger()
 
     override fun onInitializeClient() {
-
-        lateinit var webClient: ApplicationEngine
-
-        ClientPlayConnectionEvents.JOIN.register(ClientPlayConnectionEvents.Join { handler, _, client ->
-            webClient = embeddedServer(
-                CIO,
-                host = "0.0.0.0",
-                port = read().port,
-                module = {
-                    clientModule(handler, client)
+        if (ClientPlayNetworking.canSend(DEATHS)) {
+            clientLogger.info("DC available")
+            ClientPlayNetworking.registerGlobalReceiver(DEATHS) { client, _, buf, _ ->
+                buf.readString().apply {
+                    clientLogger.info("Data from server: $this")
+                    split(',').apply {
+                        client.player?.sendMessage(Text.of("Player: ${this[0]} | Count: ${this[1]}"))
+                    }
                 }
-            ).start()
-        })
-
-        ClientPlayConnectionEvents.DISCONNECT.register(ClientPlayConnectionEvents.Disconnect { _, _ ->
-            webClient.stop(1, 5, TimeUnit.SECONDS)
-            clientLogger.info("${javaClass.simpleName} WebClient stopped")
-        })
+            }
+        } else clientLogger.info("DC not available")
     }
 }

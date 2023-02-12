@@ -1,6 +1,6 @@
-package dev.syoritohatsuki.deathcounter.client.manager
+package dev.syoritohatsuki.deathcounter.legacy.client.manager
 
-import dev.syoritohatsuki.deathcounter.client.dto.ClientConfig
+import dev.syoritohatsuki.deathcounter.legacy.client.dto.ClientConfig
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
