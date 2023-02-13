@@ -28,6 +28,8 @@ object DeathCounter : ModInitializer {
 
                 serverLogger.info("Server started")
 
+                ServerPlayNetworking.registerGlobalReceiver(DEATHS) { _, _, _, _, _ -> }
+
                 PlayerDeathCallback.DEATH.register(object : PlayerDeathCallback.PlayerDeath {
                     override fun onDie(player: ServerPlayerEntity) {
                         val playerName = player.entityName
