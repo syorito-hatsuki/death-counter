@@ -5,6 +5,7 @@ import dev.syoritohatsuki.deathcounter.network.DEATHS
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking
+import net.minecraft.text.HoverEvent
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting
 import org.slf4j.Logger
@@ -25,9 +26,19 @@ object DeathCounterClient : ClientModInitializer {
                             }
                         }
                     }
-                } else sendMessage(Text.literal("\nDeath Counter not founded on server\n")
-                    .append(Text.literal("Functionality is limited\n")).styled {
-                        it.withColor(Formatting.RED).withBold(true)
+                } else sendMessage(
+                    Text.literal("\nDeath Counter not founded on server. Functionality is limited\n").styled { style ->
+                        style.withColor(Formatting.RED)
+                            .withBold(true)
+                            .withHoverEvent(
+                                HoverEvent(
+                                    HoverEvent.Action.SHOW_TEXT,
+                                    Text.literal("Without server-side mod you can't see other players death count :(")
+                                        .styled {
+                                            it.withColor(Formatting.RED).withBold(true)
+                                        }
+                                )
+                            )
                     }
                 )
             }
