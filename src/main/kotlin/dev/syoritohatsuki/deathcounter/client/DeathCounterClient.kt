@@ -20,7 +20,6 @@ object DeathCounterClient : ClientModInitializer {
                 if (ClientPlayNetworking.canSend(DEATHS)) {
                     ClientPlayNetworking.registerGlobalReceiver(DEATHS) { _, _, buf, _ ->
                         buf.readString().apply {
-                            clientLogger.info("Data from server: $this")
                             split(',').apply {
                                 sendMessage(Text.of("Player: ${this[0]} | Count: ${this[1]}"))
                             }
@@ -33,7 +32,7 @@ object DeathCounterClient : ClientModInitializer {
                             .withHoverEvent(
                                 HoverEvent(
                                     HoverEvent.Action.SHOW_TEXT,
-                                    Text.literal("Without server-side mod you can't see other players death count :(")
+                                    Text.literal("Without server-side mod you can't get other players death count :(")
                                         .styled {
                                             it.withColor(Formatting.RED).withBold(true)
                                         }
