@@ -1,7 +1,8 @@
 package dev.syoritohatsuki.deathcounter.client
 
 import com.mojang.logging.LogUtils
-import dev.syoritohatsuki.deathcounter.client.command.disableWarningCommand
+import dev.syoritohatsuki.deathcounter.client.command.warningCommand
+import dev.syoritohatsuki.deathcounter.client.command.webUiStartCommand
 import dev.syoritohatsuki.deathcounter.network.DEATHS
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback
@@ -27,38 +28,48 @@ object DeathCounterClient : ClientModInitializer {
                         }
                     }
                 } else {
-                    sendMessage(
-                        MutableText
-                            .of(TextContent.EMPTY)
-                            .append(
-                                Text.literal("\nDeath Counter not founded on server. Functionality is limited\n")
-                                    .styled { style ->
-                                        style.withColor(Formatting.RED)
-                                            .withBold(true)
-                                            .withHoverEvent(
-                                                HoverEvent(
-                                                    HoverEvent.Action.SHOW_TEXT,
-                                                    Text.literal("Without server-side mod you can't get other players death count :(")
-                                                        .styled {
-                                                            it.withColor(Formatting.RED).withBold(true)
-                                                        }
+                    if (ClientConfigManager.read().showWarning) {
+                        sendMessage(
+                            MutableText
+                                .of(TextContent.EMPTY)
+                                .append(
+                                    Text.literal("\nDeath Counter not founded on server. Functionality is limited\n")
+                                        .styled { style ->
+                                            style.withColor(Formatting.RED)
+                                                .withBold(true)
+                                                .withHoverEvent(
+                                                    HoverEvent(
+                                                        HoverEvent.Action.SHOW_TEXT,
+                                                        Text.literal("Without server-side mod you can't get other players death count :(")
+                                                            .styled {
+                                                                it.withColor(Formatting.RED).withBold(true)
+                                                            }
+                                                    )
                                                 )
+                                        }
+                                )
+                                .append(
+                                    Text.literal("For disable warning message, click me :3").styled {
+                                        it.withColor(Formatting.YELLOW)
+                                        it.withClickEvent(
+                                            ClickEvent(
+                                                ClickEvent.Action.RUN_COMMAND,
+                                                "/dc warning false"
                                             )
+                                        )
                                     }
-                            )
-                            .append(
-                                Text.literal("For disable warning message, click me :3").styled {
-                                    it.withColor(Formatting.YELLOW)
-                                    it.withClickEvent(ClickEvent(ClickEvent.Action.RUN_COMMAND, "/dc warning false"))
-                                }
-                            )
-                    )
+                                )
+                        )
+                    }
                 }
             }
         })
 
         ClientCommandRegistrationCallback.EVENT.register(ClientCommandRegistrationCallback { dispatcher, _ ->
-            dispatcher.disableWarningCommand()
+            dispatcher.apply {
+                warningCommand()
+                webUiStartCommand()
+            }
         })
     }
 }
