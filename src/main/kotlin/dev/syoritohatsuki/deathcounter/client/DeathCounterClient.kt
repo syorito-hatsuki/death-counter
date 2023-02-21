@@ -3,6 +3,8 @@ package dev.syoritohatsuki.deathcounter.client
 import com.mojang.logging.LogUtils
 import dev.syoritohatsuki.deathcounter.client.command.warningCommand
 import dev.syoritohatsuki.deathcounter.client.command.webUiStartCommand
+import dev.syoritohatsuki.deathcounter.client.webui.WebClient.startWebClient
+import dev.syoritohatsuki.deathcounter.client.webui.WebClient.stopWebClient
 import dev.syoritohatsuki.deathcounter.network.DEATHS
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback
@@ -17,7 +19,10 @@ object DeathCounterClient : ClientModInitializer {
     private val clientLogger: Logger = LogUtils.getLogger()
 
     override fun onInitializeClient() {
-        ClientPlayConnectionEvents.JOIN.register(ClientPlayConnectionEvents.Join { _, _, client ->
+        ClientPlayConnectionEvents.JOIN.register(ClientPlayConnectionEvents.Join { handler, _, client ->
+
+            startWebClient(handler, client)
+
             client.player?.apply {
                 if (ClientPlayNetworking.canSend(DEATHS)) {
                     ClientPlayNetworking.registerGlobalReceiver(DEATHS) { _, _, buf, _ ->
@@ -27,41 +32,37 @@ object DeathCounterClient : ClientModInitializer {
                             }
                         }
                     }
-                } else {
-                    if (ClientConfigManager.read().showWarning) {
-                        sendMessage(
-                            MutableText
-                                .of(TextContent.EMPTY)
-                                .append(
-                                    Text.literal("\nDeath Counter not founded on server. Functionality is limited\n")
-                                        .styled { style ->
-                                            style.withColor(Formatting.RED)
-                                                .withBold(true)
-                                                .withHoverEvent(
-                                                    HoverEvent(
-                                                        HoverEvent.Action.SHOW_TEXT,
-                                                        Text.literal("Without server-side mod you can't get other players death count :(")
-                                                            .styled {
-                                                                it.withColor(Formatting.RED).withBold(true)
-                                                            }
-                                                    )
-                                                )
-                                        }
-                                )
-                                .append(
-                                    Text.literal("For disable warning message, click me :3").styled {
-                                        it.withColor(Formatting.YELLOW)
-                                        it.withClickEvent(
-                                            ClickEvent(
-                                                ClickEvent.Action.RUN_COMMAND,
-                                                "/dc warning false"
+                } else if (ClientConfigManager.read().showWarning) sendMessage(
+                    MutableText
+                        .of(TextContent.EMPTY)
+                        .append(
+                            Text.literal("\nDeath Counter not founded on server. Functionality is limited\n")
+                                .styled { style ->
+                                    style.withColor(Formatting.RED)
+                                        .withBold(true)
+                                        .withHoverEvent(
+                                            HoverEvent(
+                                                HoverEvent.Action.SHOW_TEXT,
+                                                Text.literal("Without server-side mod you can't get other players death count :(")
+                                                    .styled {
+                                                        it.withColor(Formatting.RED).withBold(true)
+                                                    }
                                             )
                                         )
-                                    }
-                                )
+                                }
                         )
-                    }
-                }
+                        .append(
+                            Text.literal("For disable warning message, click me :3").styled {
+                                it.withColor(Formatting.YELLOW)
+                                it.withClickEvent(
+                                    ClickEvent(
+                                        ClickEvent.Action.RUN_COMMAND,
+                                        "/dc warning false"
+                                    )
+                                )
+                            }
+                        )
+                )
             }
         })
 
@@ -70,6 +71,10 @@ object DeathCounterClient : ClientModInitializer {
                 warningCommand()
                 webUiStartCommand()
             }
+        })
+
+        ClientPlayConnectionEvents.DISCONNECT.register(ClientPlayConnectionEvents.Disconnect { _, _ ->
+            stopWebClient()
         })
     }
 }
