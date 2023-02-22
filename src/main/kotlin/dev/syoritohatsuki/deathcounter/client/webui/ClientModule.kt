@@ -1,46 +1,22 @@
 package dev.syoritohatsuki.deathcounter.client.webui
 
 import dev.syoritohatsuki.deathcounter.legacy.client.manager.ClientConfigManager
-import dev.syoritohatsuki.deathcounter.legacy.util.isValidIPAddress
-import freemarker.cache.ClassTemplateLoader
 import io.ktor.server.application.*
-import io.ktor.server.freemarker.*
 import io.ktor.server.html.*
-import io.ktor.server.response.*
 import io.ktor.server.routing.*
 import net.minecraft.client.MinecraftClient
-import net.minecraft.client.network.ClientPlayNetworkHandler
 import net.minecraft.text.Text
 
-fun Application.clientModule(handler: ClientPlayNetworkHandler, client: MinecraftClient) {
-    install(FreeMarker) {
-        templateLoader = ClassTemplateLoader(this::class.java.classLoader, "templates")
-    }
+fun Application.clientModule(client: MinecraftClient) {
     routing {
-        get {
-            call.respond(
-                FreeMarkerContent(
-                    "index.ftl", mapOf(
-                        "player" to client.player?.entityName,
-                        "delay" to ClientConfigManager.read().msDelay.toString(),
-                        "remoteIp" to handler.connection.address.isValidIPAddress()
-                    )
-                )
-            )
+        get("deaths/{playerName}") {
+            /*   TODO respond player death count from cache file    */
         }
         get("/{playerName}") {
-            call.respond(
-                FreeMarkerContent(
-                    "index.ftl", mapOf(
-                        "player" to call.parameters["playerName"],
-                        "delay" to ClientConfigManager.read().msDelay.toString(),
-                        "remoteIp" to handler.connection.address.isValidIPAddress()
-                    )
-                )
-            )
+            call.respondHtml { htmlTemplate(call.parameters["playerName"].toString()) }
         }
         get {
-            call.respondHtml { htmlTemplate("", "", 1) }
+            call.respondHtml { htmlTemplate(client.player?.entityName.toString()) }
         }
     }
 

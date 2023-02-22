@@ -30,6 +30,14 @@ object ClientConfigManager {
     @Serializable
     data class ClientConfig(
         val showWarning: Boolean = true,
-        val showWebUiMessage: Boolean = true
-    )
+        val showWebUiMessage: Boolean = true,
+        val webSetup: WebSetup = WebSetup()
+    ) {
+        @Serializable
+        data class WebSetup(
+            val localAddress: String = "0.0.0.0",
+            val servicePort: Int = 1540,
+            val refreshDelayMs: Int = 5000,
+        )
+    }
 }

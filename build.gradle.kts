@@ -58,7 +58,6 @@ dependencies {
     include(implementation("io.ktor:ktor-server-host-common-jvm:$ktorVersion")!!)
     include(implementation("io.ktor:ktor-utils-jvm:$ktorVersion")!!)
     include(implementation("io.ktor:ktor-websockets-jvm:$ktorVersion")!!)
-    include(implementation("org.freemarker:freemarker:2.3.31")!!)
     include(implementation("io.ktor:ktor-server-html-builder:$ktorVersion")!!)
 
     include(modImplementation("maven.modrinth", "ducky-updater", "2023.2.3"))
