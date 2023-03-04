@@ -24,7 +24,7 @@ fun PlayerEntity.modUnavailableOnServerMessage() {
                     ).withClickEvent(
                         ClickEvent(
                             ClickEvent.Action.RUN_COMMAND,
-                            "/dc warning false"
+                            "/dcc warning false"
                         )
                     )
             }
