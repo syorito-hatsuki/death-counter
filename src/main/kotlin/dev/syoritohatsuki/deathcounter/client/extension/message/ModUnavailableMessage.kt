@@ -8,14 +8,14 @@ import net.minecraft.util.Formatting
 
 fun PlayerEntity.modUnavailableOnServerMessage() {
     sendMessage(
-        Text.literal("\nDeath Counter not founded on server. Functionality is limited\nFor disable warning message, click on it\n")
+        Text.translatable("message.warning")
             .styled { style ->
                 style.withColor(Formatting.RED)
                     .withBold(true)
                     .withHoverEvent(
                         HoverEvent(
                             HoverEvent.Action.SHOW_TEXT,
-                            Text.literal("Without server-side mod you can't get other players death count :(")
+                            Text.translatable("message.warning.tooltip")
                                 .styled { subStyle ->
                                     subStyle.withColor(Formatting.RED)
                                         .withBold(true)

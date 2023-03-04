@@ -1,6 +1,6 @@
 package dev.syoritohatsuki.deathcounter.client.webui
 
-import dev.syoritohatsuki.deathcounter.legacy.client.manager.ClientConfigManager
+import dev.syoritohatsuki.deathcounter.client.ClientConfigManager
 import io.ktor.server.cio.*
 import io.ktor.server.engine.*
 import net.minecraft.client.MinecraftClient
@@ -12,8 +12,8 @@ object WebClient {
     fun startWebClient(client: MinecraftClient) {
         webClient = embeddedServer(
             CIO,
-            host = "0.0.0.0",
-            port = ClientConfigManager.read().port,
+            host = ClientConfigManager.read().webSetup.localAddress,
+            port = ClientConfigManager.read().webSetup.servicePort,
             module = {
                 clientModule(client)
             }

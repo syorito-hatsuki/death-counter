@@ -11,20 +11,15 @@ import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking
-import org.slf4j.Logger
 
 object DeathCounterClient : ClientModInitializer {
 
-    private val clientLogger: Logger = LogUtils.getLogger()
-
     override fun onInitializeClient() {
         ClientPlayConnectionEvents.JOIN.register(ClientPlayConnectionEvents.Join { _, _, client ->
-            ClientPlayNetworking.canSend(DEATHS).apply {
-                startWebClient(client)
-                if (this) ClientPlayNetworking.registerGlobalReceiver(DEATHS) { _, _, buf, _ ->
-                    buf.receiveDeath(client)
-                } else if (ClientConfigManager.read().showWarning) client.player?.modUnavailableOnServerMessage()
-            }
+            startWebClient(client)
+
+            if (!ClientPlayNetworking.canSend(ON_DEATH) && ClientConfigManager.read().showWarning)
+                client.player?.modUnavailableOnServerMessage()
         })
 
         ClientCommandRegistrationCallback.EVENT.register(ClientCommandRegistrationCallback { dispatcher, _ ->

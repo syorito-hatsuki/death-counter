@@ -4,20 +4,16 @@ import dev.syoritohatsuki.deathcounter.client.ClientConfigManager
 import kotlinx.html.*
 
 @Suppress("HttpUrlsUsage")
-fun HTML.htmlTemplate(player: String) {
+fun HTML.htmlTemplate(host: String, port: Int) {
     head {
         title("Death Counter")
         script(type = ScriptType.textJavaScript) {
             unsafe {
                 raw(
                     """
-                    setInterval(async function () {
+                        setInterval(async function () {
                         try {
-                            const response = await fetch("http://${
-                        ClientConfigManager.read().webSetup.localAddress
-                    }:${
-                        ClientConfigManager.read().webSetup.servicePort
-                    }/${player}")
+                            const response = await fetch("http://$host:$port/deaths")
                             if (response.ok) {
                                 document.getElementById("death").textContent = await response.json();
                             } else {
@@ -27,7 +23,7 @@ fun HTML.htmlTemplate(player: String) {
                             document.getElementById("death").textContent = e
                         }
                     }, ${ClientConfigManager.read().webSetup.refreshDelayMs});
-                """
+                    """
                 )
             }
         }
