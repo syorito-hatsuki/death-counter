@@ -1,12 +1,10 @@
 package dev.syoritohatsuki.deathcounter.client
 
-import com.mojang.logging.LogUtils
-import dev.syoritohatsuki.deathcounter.client.event.clientCommandEvent
-import dev.syoritohatsuki.deathcounter.client.event.receiveDeath
+import dev.syoritohatsuki.deathcounter.client.command.clientSideCommands
 import dev.syoritohatsuki.deathcounter.client.extension.message.modUnavailableOnServerMessage
 import dev.syoritohatsuki.deathcounter.client.webui.WebClient.startWebClient
 import dev.syoritohatsuki.deathcounter.client.webui.WebClient.stopWebClient
-import dev.syoritohatsuki.deathcounter.network.DEATHS
+import dev.syoritohatsuki.deathcounter.network.ON_DEATH
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
@@ -23,7 +21,7 @@ object DeathCounterClient : ClientModInitializer {
         })
 
         ClientCommandRegistrationCallback.EVENT.register(ClientCommandRegistrationCallback { dispatcher, _ ->
-            dispatcher.clientCommandEvent()
+            dispatcher.clientSideCommands()
         })
 
         ClientPlayConnectionEvents.DISCONNECT.register(ClientPlayConnectionEvents.Disconnect { _, _ ->
