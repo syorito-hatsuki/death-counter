@@ -6,9 +6,7 @@ import net.fabricmc.fabric.api.event.EventFactory
 import net.minecraft.server.network.ServerPlayerEntity
 
 object PlayerDeathEvents {
-    var DEATH: Event<Death> = EventFactory.createArrayBacked(
-        Death::class.java
-    ) { callbacks: Array<Death> ->
+    val DEATH: Event<Death> = EventFactory.createArrayBacked(Death::class.java) { callbacks: Array<Death> ->
         Death { player ->
             callbacks.forEach {
                 it.onDie(player)
