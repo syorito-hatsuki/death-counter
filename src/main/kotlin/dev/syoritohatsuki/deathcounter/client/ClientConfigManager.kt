@@ -29,8 +29,8 @@ object ClientConfigManager {
 
     @Serializable
     data class ClientConfig(
-        val showWarning: Boolean = true,
-        val showWebUiMessage: Boolean = true,
+        var showWarning: Boolean = true,
+        val showToastNotification: ToastNotification = ToastNotification(),
         val webSetup: WebSetup = WebSetup()
     ) {
         @Serializable
@@ -38,6 +38,12 @@ object ClientConfigManager {
             val localAddress: String = "0.0.0.0",
             val servicePort: Int = 1540,
             val refreshDelayMs: Int = 5000,
+        )
+
+        @Serializable
+        data class ToastNotification(
+            var disable: Boolean = false,
+            val delay: Int = 5000
         )
     }
 }
