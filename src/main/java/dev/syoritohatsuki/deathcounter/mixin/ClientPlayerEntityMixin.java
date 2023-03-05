@@ -26,9 +26,9 @@ public abstract class ClientPlayerEntityMixin {
         if (client.player != null) {
             Objects.requireNonNull(client.getNetworkHandler())
                     .sendPacket(new ClientStatusC2SPacket(ClientStatusC2SPacket.Mode.REQUEST_STATS));
-            var count = ExtensionsKt.getDeathCount(client.player) + 1;
-            client.player.sendMessage(Text.translatable("message.player.die", count));
+            client.player.sendMessage(Text.translatable("message.player.die", (ExtensionsKt.getDeathCount(client.player) + 1)));
         }
 
     }
+
 }

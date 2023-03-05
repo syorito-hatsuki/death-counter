@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit
 object WebClient {
 
     private lateinit var webClient: ApplicationEngine
+
     fun startWebClient(client: MinecraftClient) {
         webClient = embeddedServer(
             CIO,
@@ -20,7 +21,5 @@ object WebClient {
         ).start()
     }
 
-    fun stopWebClient() {
-        webClient.stop(1, 5, TimeUnit.SECONDS)
-    }
+    fun stopWebClient() = webClient.stop(1, 5, TimeUnit.SECONDS)
 }
