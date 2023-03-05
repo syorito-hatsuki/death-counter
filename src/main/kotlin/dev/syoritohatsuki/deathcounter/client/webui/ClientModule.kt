@@ -27,7 +27,7 @@ fun Application.clientModule(client: MinecraftClient) {
             }
 
             get("deaths") {
-                call.respond(client.player?.getDeathCount().toString())
+                call.respondText(client.player?.getDeathCount().toString())
             }
         }
     }
