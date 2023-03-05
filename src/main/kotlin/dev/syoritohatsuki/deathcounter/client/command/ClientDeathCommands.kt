@@ -12,6 +12,7 @@ import dev.syoritohatsuki.deathcounter.client.extension.getDeathCount
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.argument
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource
 import net.minecraft.text.Text
+import net.minecraft.util.Formatting
 
 fun CommandDispatcher<FabricClientCommandSource>.clientSideCommands() {
     listOf("dcc", "deathcounterclient").forEach { rootLiteral ->
@@ -41,12 +42,10 @@ private fun CommandContext<FabricClientCommandSource>.executeUiNotify(): Int {
             it.write()
         }
         source.sendFeedback(
-            Text.translatable(
-                when (this) {
-                    true -> "message.notification.enabled"
-                    false -> "message.notification.disabled"
-                }
-            )
+            when (this) {
+                true -> Text.translatable("message.notification.enabled").styled { it.withColor(Formatting.GREEN) }
+                false -> Text.translatable("message.notification.disabled").styled { it.withColor(Formatting.RED) }
+            }
         )
     }
     return Command.SINGLE_SUCCESS
@@ -59,12 +58,10 @@ private fun CommandContext<FabricClientCommandSource>.executeWarning(): Int {
             it.write()
         }
         source.sendFeedback(
-            Text.translatable(
-                when (this) {
-                    true -> "message.warning.enabled"
-                    false -> "message.warning.disabled"
-                }
-            )
+            when (this) {
+                true -> Text.translatable("message.warning.enabled").styled { it.withColor(Formatting.GREEN) }
+                false -> Text.translatable("message.warning.disabled").styled { it.withColor(Formatting.RED) }
+            }
         )
     }
     return Command.SINGLE_SUCCESS

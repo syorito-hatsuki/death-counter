@@ -13,6 +13,7 @@ import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.MutableText
 import net.minecraft.text.Text
 import net.minecraft.text.TextContent
+import net.minecraft.util.Formatting
 
 fun CommandDispatcher<ServerCommandSource>.serverSideCommands() {
     listOf("dcs", "deathcounterserver").forEach { rootLiteral ->
@@ -34,11 +35,16 @@ private fun CommandContext<ServerCommandSource>.executeTopDeaths(): Int {
 
     source.sendFeedback(
         MutableText.of(TextContent.EMPTY).apply {
-            append(Text.translatable("message.top").styled { it.withBold(true) })
-            var index = 1
-            CacheManager.getTop().forEach { (name, count) ->
-                append(Text.literal("\n$index. $name -> [$count]"))
-                index++
+            append(Text.translatable("message.top").styled { it.withColor(Formatting.YELLOW).withBold(true) })
+            CacheManager.getTop().forEachIndexed { index, (name, count) ->
+                append(Text.literal("\n${index + 1}. $name -> [$count]").styled {
+                    when (index) {
+                        0 -> it.withColor(0xFFD700)
+                        1 -> it.withColor(0xC0C0C0)
+                        2 -> it.withColor(0xCD7F32)
+                        else -> it.withColor(Formatting.DARK_GRAY)
+                    }
+                })
             }
         }, false
     )
@@ -52,12 +58,22 @@ private fun CommandContext<ServerCommandSource>.executeDeathPage(): Int {
 
     source.sendFeedback(
         MutableText.of(TextContent.EMPTY).apply {
-            CacheManager.getPage(page).apply {
-                if (isEmpty()) append(Text.translatable("message.page.empty")) else {
-                    append(Text.translatable("message.page", page))
-                    forEachIndexed { index, pair ->
-                        append(Text.literal("\n${index + 1}. ${pair.first} -> [${pair.second}]"))
+            CacheManager.getPage(page).let { list ->
+                if (list.isEmpty()) append(Text.translatable("message.page.empty")) else {
+
+                    append(Text.translatable("message.page", page).styled {
+                        it.withColor(Formatting.YELLOW)
+                            .withBold(true)
+                    })
+
+                    list.forEachIndexed { index, (name, count) ->
+                        append(Text.literal("\n   "))
+                        append(Text.translatable("message.other.die", name, count).styled {
+                            if (index % 2 == 0) it.withColor(Formatting.RED)
+                            else it.withColor(Formatting.DARK_RED)
+                        })
                     }
+
                 }
             }
         }, false
