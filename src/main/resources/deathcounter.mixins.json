@@ -6,5 +6,9 @@
     "defaultRequire": 1
   },
   "mixins": [
+    "ServerPlayerEntityMixin"
+  ],
+  "client": [
+    "ClientPlayerEntityMixin"
   ]
 }

@@ -42,23 +42,20 @@ dependencies {
     modImplementation("net.fabricmc", "fabric-language-kotlin", fabricKotlinVersion)
 
     val ktorVersion: String by project
-    include(implementation("io.ktor:ktor-events-jvm:$ktorVersion")!!)
-    include(implementation("io.ktor:ktor-http-cio-jvm:$ktorVersion")!!)
-    include(implementation("io.ktor:ktor-http-jvm:$ktorVersion")!!)
-    include(implementation("io.ktor:ktor-io-jvm:$ktorVersion")!!)
-    include(implementation("io.ktor:ktor-network-jvm:$ktorVersion")!!)
-    include(implementation("io.ktor:ktor-serialization-jvm:$ktorVersion")!!)
-    include(implementation("io.ktor:ktor-serialization-kotlinx-json-jvm:$ktorVersion")!!)
-    include(implementation("io.ktor:ktor-serialization-kotlinx-jvm:$ktorVersion")!!)
-    include(implementation("io.ktor:ktor-server-cio-jvm:$ktorVersion")!!)
-    include(implementation("io.ktor:ktor-server-content-negotiation-jvm:$ktorVersion")!!)
-    include(implementation("io.ktor:ktor-server-core-jvm:$ktorVersion")!!)
-    include(implementation("io.ktor:ktor-server-cors-jvm:$ktorVersion")!!)
-    include(implementation("io.ktor:ktor-server-freemarker-jvm:$ktorVersion")!!)
-    include(implementation("io.ktor:ktor-server-host-common-jvm:$ktorVersion")!!)
-    include(implementation("io.ktor:ktor-utils-jvm:$ktorVersion")!!)
-    include(implementation("io.ktor:ktor-websockets-jvm:$ktorVersion")!!)
-    include(implementation("org.freemarker:freemarker:2.3.31")!!)
+    include(implementation("io.ktor", "ktor-events-jvm", ktorVersion))
+    include(implementation("io.ktor", "ktor-http-cio-jvm", ktorVersion))
+    include(implementation("io.ktor", "ktor-http-jvm", ktorVersion))
+    include(implementation("io.ktor", "ktor-io-jvm", ktorVersion))
+    include(implementation("io.ktor", "ktor-network-jvm", ktorVersion))
+    include(implementation("io.ktor", "ktor-server-cio-jvm", ktorVersion))
+    include(implementation("io.ktor", "ktor-server-core-jvm", ktorVersion))
+    include(implementation("io.ktor", "ktor-server-host-common-jvm", ktorVersion))
+    include(implementation("io.ktor", "ktor-utils-jvm", ktorVersion))
+    include(implementation("io.ktor", "ktor-server-html-builder-jvm", ktorVersion))
+
+    include(implementation("org.jetbrains.kotlinx", "kotlinx-html-jvm", "0.8.0"))
+
+    include(modImplementation("maven.modrinth", "ducky-updater", "2023.2.3"))
 }
 
 tasks {
