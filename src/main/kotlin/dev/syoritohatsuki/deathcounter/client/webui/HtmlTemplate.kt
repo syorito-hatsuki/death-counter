@@ -7,6 +7,11 @@ import kotlinx.html.*
 fun HTML.htmlTemplate(host: String, port: Int) {
     head {
         title("Death Counter")
+        link(
+            rel = "icon",
+            type = "image/x-icon",
+            href = "https://raw.githubusercontent.com/syorito-hatsuki/death-counter/1.19.2/src/main/resources/assets/deathcounter/icon.png"
+        )
         script(type = ScriptType.textJavaScript) {
             unsafe {
                 raw(
