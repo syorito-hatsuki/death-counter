@@ -7,7 +7,7 @@ import net.minecraft.client.toast.Toast.TEXTURE
 import net.minecraft.client.toast.Toast.TYPE
 import net.minecraft.client.toast.ToastManager
 import net.minecraft.client.util.math.MatrixStack
-import net.minecraft.text.Text
+import net.minecraft.text.TranslatableText
 import net.minecraft.util.Formatting
 
 @Suppress("HttpUrlsUsage")
@@ -37,13 +37,13 @@ class WebToast(private var host: String, private var port: Int) : Toast {
         manager.drawTexture(matrices, 0, 0, 0, 0, this.width, this.height)
 
         manager.client.textRenderer.draw(
-            matrices, Text.translatable("toast.webui.stated").styled {
+            matrices, TranslatableText("toast.webui.stated").styled {
                 it.withColor(Formatting.GREEN).withBold(true)
             }, 38.0f, 7.0f, 0
         )
 
         manager.client.textRenderer.draw(
-            matrices, Text.literal("http://$host:$port").styled {
+            matrices, TranslatableText("http://$host:$port").styled {
                 it.withColor(Formatting.YELLOW)
             }, 35.0f, 18.0f, 0
         )

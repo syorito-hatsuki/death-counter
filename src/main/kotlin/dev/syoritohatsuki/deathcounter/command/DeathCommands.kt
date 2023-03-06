@@ -10,9 +10,8 @@ import dev.syoritohatsuki.deathcounter.util.CacheManager
 import net.minecraft.command.argument.EntityArgumentType
 import net.minecraft.server.command.CommandManager.argument
 import net.minecraft.server.command.ServerCommandSource
-import net.minecraft.text.MutableText
-import net.minecraft.text.Text
-import net.minecraft.text.TextContent
+import net.minecraft.text.LiteralText
+import net.minecraft.text.TranslatableText
 import net.minecraft.util.Formatting
 
 fun CommandDispatcher<ServerCommandSource>.serverSideCommands() {
@@ -34,10 +33,10 @@ fun CommandDispatcher<ServerCommandSource>.serverSideCommands() {
 private fun CommandContext<ServerCommandSource>.executeTopDeaths(): Int {
 
     source.sendFeedback(
-        MutableText.of(TextContent.EMPTY).apply {
-            append(Text.translatable("message.top").styled { it.withColor(Formatting.YELLOW).withBold(true) })
+        LiteralText("").apply {
+            append(TranslatableText("message.top").styled { it.withColor(Formatting.YELLOW).withBold(true) })
             CacheManager.getTop().forEachIndexed { index, (name, count) ->
-                append(Text.literal("\n${index + 1}. $name -> [$count]").styled {
+                append(LiteralText("\n${index + 1}. $name -> [$count]").styled {
                     when (index) {
                         0 -> it.withColor(0xFFD700)
                         1 -> it.withColor(0xC0C0C0)
@@ -57,18 +56,18 @@ private fun CommandContext<ServerCommandSource>.executeDeathPage(): Int {
     val page = IntegerArgumentType.getInteger(this, "page")
 
     source.sendFeedback(
-        MutableText.of(TextContent.EMPTY).apply {
+        LiteralText("").apply {
             CacheManager.getPage(page).let { list ->
-                if (list.isEmpty()) append(Text.translatable("message.page.empty")) else {
+                if (list.isEmpty()) append(TranslatableText("message.page.empty")) else {
 
-                    append(Text.translatable("message.page", page).styled {
+                    append(TranslatableText("message.page", page).styled {
                         it.withColor(Formatting.YELLOW)
                             .withBold(true)
                     })
 
                     list.forEachIndexed { index, (name, count) ->
-                        append(Text.literal("\n   "))
-                        append(Text.translatable("message.other.die", name, count).styled {
+                        append(LiteralText("\n   "))
+                        append(TranslatableText("message.other.die", name, count).styled {
                             if (index % 2 == 0) it.withColor(Formatting.RED)
                             else it.withColor(Formatting.DARK_RED)
                         })
@@ -90,7 +89,7 @@ private fun CommandContext<ServerCommandSource>.executePlayerDeaths(): Int {
         StringArgumentType.getString(this, "playerName")
     }
 
-    source.sendFeedback(Text.translatable("message.other.die", player, CacheManager.getByPlayerName(player)), false)
+    source.sendFeedback(TranslatableText("message.other.die", player, CacheManager.getByPlayerName(player)), false)
 
     return Command.SINGLE_SUCCESS
 }

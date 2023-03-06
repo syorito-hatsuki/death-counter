@@ -6,7 +6,7 @@ import dev.syoritohatsuki.deathcounter.client.webui.WebClient.startWebClient
 import dev.syoritohatsuki.deathcounter.client.webui.WebClient.stopWebClient
 import dev.syoritohatsuki.deathcounter.network.ON_DEATH
 import net.fabricmc.api.ClientModInitializer
-import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback
+import net.fabricmc.fabric.api.client.command.v1.ClientCommandManager
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking
 
@@ -20,9 +20,9 @@ object DeathCounterClient : ClientModInitializer {
                 client.player?.modUnavailableOnServerMessage()
         })
 
-        ClientCommandRegistrationCallback.EVENT.register(ClientCommandRegistrationCallback { dispatcher, _ ->
-            dispatcher.clientSideCommands()
-        })
+        listOf("dcc", "deathcounterclient").forEach { rootLiteral ->
+            ClientCommandManager.DISPATCHER.register(clientSideCommands(rootLiteral))
+        }
 
         ClientPlayConnectionEvents.DISCONNECT.register(ClientPlayConnectionEvents.Disconnect { _, _ ->
             stopWebClient()

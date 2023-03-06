@@ -6,7 +6,7 @@ import dev.syoritohatsuki.deathcounter.network.ON_DEATH
 import dev.syoritohatsuki.deathcounter.util.CacheManager
 import dev.syoritohatsuki.duckyupdater.DuckyUpdater
 import net.fabricmc.api.ModInitializer
-import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
+import net.fabricmc.fabric.api.command.v1.CommandRegistrationCallback
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking
 import net.minecraft.server.network.ServerPlayerEntity
@@ -25,7 +25,7 @@ object DeathCounter : ModInitializer {
             CacheManager.addOrUpdatePlayer(player.entityName, player.getDeathCount())
         })
 
-        CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher, _, _ ->
+        CommandRegistrationCallback.EVENT.register(CommandRegistrationCallback { dispatcher, _ ->
             dispatcher.serverSideCommands()
         })
 

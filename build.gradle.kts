@@ -55,7 +55,7 @@ dependencies {
 
     include(implementation("org.jetbrains.kotlinx", "kotlinx-html-jvm", "0.8.0"))
 
-    include(modImplementation("maven.modrinth", "ducky-updater", "2023.2.3"))
+    include(modImplementation("maven.modrinth", "ducky-updater", "DhHNagle"))
 }
 
 tasks {
