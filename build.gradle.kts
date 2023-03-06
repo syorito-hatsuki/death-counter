@@ -23,6 +23,11 @@ repositories {
             includeGroup("maven.modrinth")
         }
     }
+
+    maven {
+        setUrl("https://maven.nucleoid.xyz")
+    }
+
 }
 
 dependencies {
@@ -56,6 +61,8 @@ dependencies {
     include(implementation("org.jetbrains.kotlinx", "kotlinx-html-jvm", "0.8.0"))
 
     include(modImplementation("maven.modrinth", "ducky-updater", "2023.2.3"))
+
+    include(modImplementation("fr.catcore", "server-translations-api", "1.4.15+1.19"))
 }
 
 tasks {
