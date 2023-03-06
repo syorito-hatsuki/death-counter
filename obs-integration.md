@@ -1,6 +1,5 @@
 # Adding counter in OBS
 #### Start minecraft client or login to server where installed Death Counter 
-> ***VANILLA SERVERS CURRENTLY NOT SUPPORTED!!!***
 
 ![Screenshot_20221125_190356](https://user-images.githubusercontent.com/33298273/204034406-adcdb3c3-543e-40d2-b799-ac836d27c489.png)
 
