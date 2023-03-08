@@ -1,0 +1,14 @@
+{
+  "message.player.die": "Вы умерли %d раз",
+  "message.other.die": "%s умер %d раз",
+  "message.notification.enabled": "Уведомление включено",
+  "message.notification.disabled": "Уведомление выключено",
+  "message.warning.enabled": "Предупреждения включены",
+  "message.warning.disabled": "Предупреждения выключены",
+  "message.warning": "\nDeath Counter не установлен на сервер. Функционал ограничен\nДля отключения предупреждений нажмите сюда\n",
+  "message.warning.tooltip": "Без серверного мода вы не сможете получить счетчик смертей других игроков :(",
+  "toast.webui.stated": "WebUI Запущен",
+  "message.top": "Топ 5 игроков",
+  "message.page.empty": "Страница пуста",
+  "message.page": "DeathCounter Страница [%d]"
+}
