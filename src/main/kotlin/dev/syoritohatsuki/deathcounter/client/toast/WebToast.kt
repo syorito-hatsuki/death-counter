@@ -2,6 +2,7 @@ package dev.syoritohatsuki.deathcounter.client.toast
 
 import com.mojang.blaze3d.systems.RenderSystem
 import dev.syoritohatsuki.deathcounter.client.ClientConfigManager
+import net.minecraft.client.gui.DrawableHelper
 import net.minecraft.client.toast.Toast
 import net.minecraft.client.toast.Toast.TEXTURE
 import net.minecraft.client.toast.Toast.TYPE
@@ -34,7 +35,7 @@ class WebToast(private var host: String, private var port: Int) : Toast {
 
         RenderSystem.setShaderTexture(0, TEXTURE)
         RenderSystem.polygonOffset(0.5f, 0.5f)
-        manager.drawTexture(matrices, 0, 0, 0, 0, this.width, this.height)
+        DrawableHelper.drawTexture(matrices, 0, 0, 0, 0, this.width, this.height)
 
         manager.client.textRenderer.draw(
             matrices, Text.translatable("toast.webui.stated").styled {

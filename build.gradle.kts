@@ -4,10 +4,13 @@ plugins {
     kotlin("plugin.serialization")
 }
 
+val minecraftVersion: String by project
+
 base {
     val archivesBaseName: String by project
-    archivesName.set(archivesBaseName)
+    archivesName.set("$archivesBaseName-$minecraftVersion")
 }
+
 
 val modVersion: String by project
 version = modVersion
@@ -31,7 +34,6 @@ repositories {
 }
 
 dependencies {
-    val minecraftVersion: String by project
     minecraft("com.mojang", "minecraft", minecraftVersion)
 
     val yarnMappings: String by project
@@ -62,7 +64,7 @@ dependencies {
 
     include(modImplementation("maven.modrinth", "ducky-updater", "2023.2.3"))
 
-    include(modImplementation("fr.catcore", "server-translations-api", "1.4.15+1.19"))
+    include(modImplementation("xyz.nucleoid", "server-translations-api", "2.0.0-beta.1+1.19.4-pre2"))
 }
 
 tasks {
