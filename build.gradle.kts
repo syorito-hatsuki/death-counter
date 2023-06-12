@@ -62,7 +62,7 @@ dependencies {
 
     include(implementation("org.jetbrains.kotlinx", "kotlinx-html-jvm", "0.8.0"))
 
-    include(modImplementation("maven.modrinth", "ducky-updater", "2023.2.3"))
+    include(modImplementation("maven.modrinth", "ducky-updater-lib", "2023.6.1"))
 
     include(modImplementation("xyz.nucleoid", "server-translations-api", "2.0.0-beta.1+1.19.4-pre2"))
 }

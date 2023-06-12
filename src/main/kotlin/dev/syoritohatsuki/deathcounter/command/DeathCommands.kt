@@ -33,7 +33,7 @@ fun CommandDispatcher<ServerCommandSource>.serverSideCommands() {
 
 private fun CommandContext<ServerCommandSource>.executeTopDeaths(): Int {
 
-    source.sendFeedback(
+    source.sendFeedback({
         MutableText.of(TextContent.EMPTY).apply {
             append(Text.translatable("message.top").styled { it.withColor(Formatting.YELLOW).withBold(true) })
             CacheManager.getTop().forEachIndexed { index, (name, count) ->
@@ -46,8 +46,8 @@ private fun CommandContext<ServerCommandSource>.executeTopDeaths(): Int {
                     }
                 })
             }
-        }, false
-    )
+        }
+    }, false)
 
     return Command.SINGLE_SUCCESS
 }
@@ -56,7 +56,7 @@ private fun CommandContext<ServerCommandSource>.executeDeathPage(): Int {
 
     val page = IntegerArgumentType.getInteger(this, "page")
 
-    source.sendFeedback(
+    source.sendFeedback({
         MutableText.of(TextContent.EMPTY).apply {
             CacheManager.getPage(page).let { list ->
                 if (list.isEmpty()) append(Text.translatable("message.page.empty")) else {
@@ -76,8 +76,8 @@ private fun CommandContext<ServerCommandSource>.executeDeathPage(): Int {
 
                 }
             }
-        }, false
-    )
+        }
+    }, false)
 
     return Command.SINGLE_SUCCESS
 }
@@ -90,7 +90,9 @@ private fun CommandContext<ServerCommandSource>.executePlayerDeaths(): Int {
         StringArgumentType.getString(this, "playerName")
     }
 
-    source.sendFeedback(Text.translatable("message.other.die", player, CacheManager.getByPlayerName(player)), false)
+    source.sendFeedback({
+        Text.translatable("message.other.die", player, CacheManager.getByPlayerName(player))
+    }, false)
 
     return Command.SINGLE_SUCCESS
 }
