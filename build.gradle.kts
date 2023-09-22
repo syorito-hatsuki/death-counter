@@ -19,18 +19,14 @@ val mavenGroup: String by project
 group = mavenGroup
 
 repositories {
-    maven {
+    maven("https://api.modrinth.com/maven") {
         name = "Modrinth"
-        setUrl("https://api.modrinth.com/maven")
         content {
             includeGroup("maven.modrinth")
         }
     }
 
-    maven {
-        setUrl("https://maven.nucleoid.xyz")
-    }
-
+    maven("https://maven.nucleoid.xyz")
 }
 
 dependencies {
@@ -62,9 +58,7 @@ dependencies {
 
     include(implementation("org.jetbrains.kotlinx", "kotlinx-html-jvm", "0.8.0"))
 
-    include(modImplementation("maven.modrinth", "ducky-updater-lib", "YvHo3R4h"))
-
-    include(modImplementation("xyz.nucleoid", "server-translations-api", "2.0.0-beta.1+1.19.4-pre2"))
+    include(modImplementation("maven.modrinth", "ducky-updater-lib", "baKz9xBi"))
 }
 
 tasks {
