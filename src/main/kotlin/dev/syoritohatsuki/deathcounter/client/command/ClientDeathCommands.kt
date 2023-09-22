@@ -31,7 +31,13 @@ fun CommandDispatcher<FabricClientCommandSource>.clientSideCommands() {
 }
 
 private fun CommandContext<FabricClientCommandSource>.executeOwnDeaths(): Int {
-    source.sendFeedback(Text.translatable("message.player.die", source.player.getDeathCount()))
+    source.sendFeedback(
+        Text.translatableWithFallback(
+            "message.player.die",
+            "You died %d times",
+            source.player.getDeathCount()
+        )
+    )
     return Command.SINGLE_SUCCESS
 }
 
@@ -43,8 +49,11 @@ private fun CommandContext<FabricClientCommandSource>.executeUiNotify(): Int {
         }
         source.sendFeedback(
             when (this) {
-                true -> Text.translatable("message.notification.enabled").styled { it.withColor(Formatting.GREEN) }
-                false -> Text.translatable("message.notification.disabled").styled { it.withColor(Formatting.RED) }
+                true -> Text.translatableWithFallback("message.notification.enabled", "Notify message enabled")
+                    .styled { it.withColor(Formatting.GREEN) }
+
+                false -> Text.translatableWithFallback("message.notification.disabled", "Notify message disabled")
+                    .styled { it.withColor(Formatting.RED) }
             }
         )
     }
@@ -59,8 +68,11 @@ private fun CommandContext<FabricClientCommandSource>.executeWarning(): Int {
         }
         source.sendFeedback(
             when (this) {
-                true -> Text.translatable("message.warning.enabled").styled { it.withColor(Formatting.GREEN) }
-                false -> Text.translatable("message.warning.disabled").styled { it.withColor(Formatting.RED) }
+                true -> Text.translatableWithFallback("message.warning.enabled", "Warning message enabled")
+                    .styled { it.withColor(Formatting.GREEN) }
+
+                false -> Text.translatableWithFallback("message.warning.disabled", "Warning message disabled")
+                    .styled { it.withColor(Formatting.RED) }
             }
         )
     }
