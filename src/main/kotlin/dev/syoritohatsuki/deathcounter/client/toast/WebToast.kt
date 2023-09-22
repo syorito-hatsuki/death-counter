@@ -31,7 +31,7 @@ class WebToast(private var host: String, private var port: Int) : Toast {
             justUpdated = false
         }
 
-        context.drawTexture(TEXTURE, 0, 0, 0, 0, this.width, this.height)
+        context.drawGuiTexture(Identifier("toast/advancement"), 0, 0, this.width, this.height)
 
         context.drawText(manager.client.textRenderer, Text.translatable("toast.webui.stated").styled {
             it.withColor(Formatting.GREEN).withBold(true)
