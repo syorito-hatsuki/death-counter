@@ -4,7 +4,6 @@ import dev.syoritohatsuki.deathcounter.command.serverSideCommands
 import dev.syoritohatsuki.deathcounter.event.PlayerDeathEvents
 import dev.syoritohatsuki.deathcounter.network.ON_DEATH
 import dev.syoritohatsuki.deathcounter.util.CacheManager
-import dev.syoritohatsuki.duckyupdater.DuckyUpdater
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
@@ -17,7 +16,6 @@ object DeathCounter : ModInitializer {
     const val MOD_ID = "deathcounter"
 
     override fun onInitialize() {
-        DuckyUpdater.checkForUpdate("7x0zk3YH", MOD_ID)
 
         ServerPlayNetworking.registerGlobalReceiver(ON_DEATH) { _, _, _, _, _ -> }
 

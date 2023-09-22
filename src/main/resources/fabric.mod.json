@@ -28,6 +28,11 @@
       }
     ]
   },
+  "custom": {
+    "duckyupdater": {
+      "modrinthId": "7x0zk3YH"
+    }
+  },
   "mixins": [
     "deathcounter.mixins.json"
   ],
