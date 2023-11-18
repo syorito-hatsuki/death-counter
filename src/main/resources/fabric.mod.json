@@ -31,13 +31,21 @@
   "custom": {
     "duckyupdater": {
       "modrinthId": "7x0zk3YH"
-    }
+    },
+    "fstats": 34,
+    "mcb": [
+      {
+        "name": "Ducky House",
+        "fillColor": -13730510,
+        "outlineColor": -11751600
+      }
+    ]
   },
   "mixins": [
     "deathcounter.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.9",
+    "fabricloader": ">=0.14.20",
     "fabric": "*",
     "fabric-language-kotlin": "*",
     "minecraft": ">=1.20",

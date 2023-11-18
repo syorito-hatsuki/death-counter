@@ -11,7 +11,6 @@ base {
     archivesName.set("$archivesBaseName-$minecraftVersion")
 }
 
-
 val modVersion: String by project
 version = modVersion
 
@@ -56,9 +55,13 @@ dependencies {
     include(implementation("io.ktor", "ktor-utils-jvm", ktorVersion))
     include(implementation("io.ktor", "ktor-server-html-builder-jvm", ktorVersion))
 
-    include(implementation("org.jetbrains.kotlinx", "kotlinx-html-jvm", "0.8.0"))
+    include(implementation("org.jetbrains.kotlinx", "kotlinx-html-jvm", "0.9.1"))
 
-    include(modImplementation("maven.modrinth", "ducky-updater-lib", "baKz9xBi"))
+    include(modImplementation("maven.modrinth", "ducky-updater-lib", "2023.10.1"))
+
+    include(modImplementation("maven.modrinth", "fstats", "2023.11.2"))
+
+    include(modImplementation("maven.modrinth", "modmenu-badges-lib", "2023.6.1"))
 }
 
 tasks {
@@ -71,17 +74,26 @@ tasks {
         options.release.set(javaVersion.toString().toInt())
     }
 
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> { kotlinOptions { jvmTarget = javaVersion.toString() } }
+    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = javaVersion.toString()
+        }
+    }
 
-    jar { from("LICENSE") { rename { "${it}_${base.archivesName}" } } }
+    jar {
+        from("LICENSE")
+    }
 
     processResources {
         inputs.property("version", project.version)
         filesMatching("fabric.mod.json") { expand(mutableMapOf("version" to project.version)) }
     }
 
+
     java {
-        toolchain { languageVersion.set(JavaLanguageVersion.of(javaVersion.toString())) }
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(javaVersion.toString()))
+        }
         sourceCompatibility = javaVersion
         targetCompatibility = javaVersion
         withSourcesJar()
