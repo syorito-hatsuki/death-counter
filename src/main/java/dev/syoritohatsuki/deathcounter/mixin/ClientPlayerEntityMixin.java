@@ -1,5 +1,6 @@
 package dev.syoritohatsuki.deathcounter.mixin;
 
+import dev.syoritohatsuki.deathcounter.client.ClientConfigManager;
 import dev.syoritohatsuki.deathcounter.client.extension.ExtensionsKt;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
@@ -23,10 +24,21 @@ public abstract class ClientPlayerEntityMixin {
 
     @Inject(method = "requestRespawn", at = @At("TAIL"))
     public void requestRespawn(CallbackInfo ci) {
-        if (client.player != null) {
-            Objects.requireNonNull(client.getNetworkHandler())
-                    .sendPacket(new ClientStatusC2SPacket(ClientStatusC2SPacket.Mode.REQUEST_STATS));
-            client.player.sendMessage(Text.translatableWithFallback("message.player.die", "You died %d times", (ExtensionsKt.getDeathCount(client.player) + 1)));
+        if (client.player == null || client.getNetworkHandler() == null) return;
+
+        client.getNetworkHandler().sendPacket(new ClientStatusC2SPacket(ClientStatusC2SPacket.Mode.REQUEST_STATS));
+
+        var message = Text.translatableWithFallback("message.player.die", "You died %d times", (ExtensionsKt.getDeathCount(client.player) + 1));
+
+        var config = ClientConfigManager.INSTANCE.read();
+
+        if (!config.getChatMessage().getDisable()) {
+            client.player.sendMessage(message);
+        }
+
+        if (!config.getTitleMessage().getDisable()) {
+            client.inGameHud.setTitle(message);
+            client.inGameHud.setTitleTicks(5, 5,config.getTitleMessage().getDelayInTicks());
         }
     }
 }

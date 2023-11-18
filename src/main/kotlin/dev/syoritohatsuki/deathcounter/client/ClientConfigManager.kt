@@ -29,6 +29,8 @@ object ClientConfigManager {
 
     @Serializable
     data class ClientConfig(
+        val titleMessage: TitleMessage = TitleMessage(),
+        val chatMessage: ChatMessage = ChatMessage(),
         var showWarning: Boolean = true,
         val showToastNotification: ToastNotification = ToastNotification(),
         val webSetup: WebSetup = WebSetup()
@@ -44,6 +46,17 @@ object ClientConfigManager {
         data class ToastNotification(
             var disable: Boolean = false,
             val delay: Int = 5000
+        )
+
+        @Serializable
+        data class TitleMessage(
+            var disable: Boolean = false,
+            var delayInTicks: Int = 60
+        )
+
+        @Serializable
+        data class ChatMessage(
+            var disable: Boolean = false
         )
     }
 }
