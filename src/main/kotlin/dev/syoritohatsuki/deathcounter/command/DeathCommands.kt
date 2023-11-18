@@ -18,15 +18,11 @@ import net.minecraft.util.Formatting
 fun CommandDispatcher<ServerCommandSource>.serverSideCommands() {
     listOf("dcs", "deathcounterserver").forEach { rootLiteral ->
         register(
-            LiteralArgumentBuilder.literal<ServerCommandSource>(rootLiteral).then(
-                LiteralArgumentBuilder.literal<ServerCommandSource>("top").executes { it.executeTopDeaths() }
-            ).then(
-                argument("page", IntegerArgumentType.integer(1)).executes { it.executeDeathPage() }
-            ).then(
-                argument("playerName", StringArgumentType.word()).executes { it.executePlayerDeaths() }
-            ).then(
-                argument("playerEntity", EntityArgumentType.player()).executes { it.executePlayerDeaths() }
-            )
+            LiteralArgumentBuilder.literal<ServerCommandSource>(rootLiteral)
+                .then(LiteralArgumentBuilder.literal<ServerCommandSource>("top").executes { it.executeTopDeaths() })
+                .then(argument("page", IntegerArgumentType.integer(1)).executes { it.executeDeathPage() })
+                .then(argument("playerName", StringArgumentType.word()).executes { it.executePlayerDeaths() })
+                .then(argument("playerEntity", EntityArgumentType.player()).executes { it.executePlayerDeaths() })
         )
     }
 }
@@ -35,9 +31,8 @@ private fun CommandContext<ServerCommandSource>.executeTopDeaths(): Int {
 
     source.sendFeedback({
         MutableText.of(TextContent.EMPTY).apply {
-            append(
-                Text.translatableWithFallback("message.top", "Top 5 players")
-                    .styled { it.withColor(Formatting.YELLOW).withBold(true) })
+            append(Text.translatableWithFallback("message.top", "Top 5 players")
+                .styled { it.withColor(Formatting.YELLOW).withBold(true) })
             CacheManager.getTop().forEachIndexed { index, (name, count) ->
                 append(Text.literal("\n${index + 1}. $name -> [$count]").styled {
                     when (index) {
@@ -64,17 +59,16 @@ private fun CommandContext<ServerCommandSource>.executeDeathPage(): Int {
                 if (list.isEmpty()) append(Text.translatableWithFallback("message.page.empty", "Page is empty")) else {
 
                     append(Text.translatableWithFallback("message.page", "DeathCounter Page [%d]", page).styled {
-                        it.withColor(Formatting.YELLOW)
-                            .withBold(true)
+                        it.withColor(Formatting.YELLOW).withBold(true)
                     })
 
                     list.forEachIndexed { index, (name, count) ->
                         append(Text.literal("\n   "))
-                        append(
-                            Text.translatableWithFallback("message.other.die", "%s died %d times", name, count).styled {
-                            if (index % 2 == 0) it.withColor(Formatting.RED)
-                            else it.withColor(Formatting.DARK_RED)
-                        })
+                        append(Text.translatableWithFallback("message.other.die", "%s died %d times", name, count)
+                            .styled {
+                                if (index % 2 == 0) it.withColor(Formatting.RED)
+                                else it.withColor(Formatting.DARK_RED)
+                            })
                     }
 
                 }
@@ -95,10 +89,7 @@ private fun CommandContext<ServerCommandSource>.executePlayerDeaths(): Int {
 
     source.sendFeedback({
         Text.translatableWithFallback(
-            "message.other.die",
-            "%s died %d times",
-            player,
-            CacheManager.getByPlayerName(player)
+            "message.other.die", "%s died %d times", player, CacheManager.getByPlayerName(player)
         )
     }, false)
 

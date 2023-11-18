@@ -2,7 +2,6 @@ package dev.syoritohatsuki.deathcounter.client
 
 import dev.syoritohatsuki.deathcounter.DeathCounter.MOD_ID
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.io.File
@@ -33,7 +32,7 @@ object ClientConfigManager {
         val chatMessage: ChatMessage = ChatMessage(),
         var showWarning: Boolean = true,
         val showToastNotification: ToastNotification = ToastNotification(),
-        val webSetup: WebSetup = WebSetup()
+        val webSetup: WebSetup = WebSetup(),
     ) {
         @Serializable
         data class WebSetup(
@@ -45,18 +44,18 @@ object ClientConfigManager {
         @Serializable
         data class ToastNotification(
             var disable: Boolean = false,
-            val delay: Int = 5000
+            val delay: Int = 5000,
         )
 
         @Serializable
         data class TitleMessage(
             var disable: Boolean = false,
-            var delayInTicks: Int = 60
+            var delayInTicks: Int = 60,
         )
 
         @Serializable
         data class ChatMessage(
-            var disable: Boolean = false
+            var disable: Boolean = false,
         )
     }
 }

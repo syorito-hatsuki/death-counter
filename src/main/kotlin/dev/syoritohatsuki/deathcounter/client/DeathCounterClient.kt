@@ -16,8 +16,9 @@ object DeathCounterClient : ClientModInitializer {
         ClientPlayConnectionEvents.JOIN.register(ClientPlayConnectionEvents.Join { _, _, client ->
             startWebClient(client)
 
-            if (!ClientPlayNetworking.canSend(ON_DEATH) && ClientConfigManager.read().showWarning)
+            if (!ClientPlayNetworking.canSend(ON_DEATH) && ClientConfigManager.read().showWarning) {
                 client.player?.modUnavailableOnServerMessage()
+            }
         })
 
         ClientCommandRegistrationCallback.EVENT.register(ClientCommandRegistrationCallback { dispatcher, _ ->

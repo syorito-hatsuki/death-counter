@@ -13,8 +13,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.Objects;
-
 @Mixin(ClientPlayerEntity.class)
 public abstract class ClientPlayerEntityMixin {
 
@@ -38,7 +36,7 @@ public abstract class ClientPlayerEntityMixin {
 
         if (!config.getTitleMessage().getDisable()) {
             client.inGameHud.setTitle(message);
-            client.inGameHud.setTitleTicks(5, 5,config.getTitleMessage().getDelayInTicks());
+            client.inGameHud.setTitleTicks(5, 5, config.getTitleMessage().getDelayInTicks());
         }
     }
 }

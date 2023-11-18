@@ -34,10 +34,10 @@ class WebToast(private var host: String, private var port: Int) : Toast {
         context.drawGuiTexture(Identifier("toast/advancement"), 0, 0, this.width, this.height)
 
         context.drawText(
-            manager.client.textRenderer,
-            Text.translatableWithFallback("toast.webui.stated", "WebUI Started").styled {
-            it.withColor(Formatting.GREEN).withBold(true)
-        }, 38, 7, 0, false)
+            manager.client.textRenderer, Text.translatableWithFallback("toast.webui.stated", "WebUI Started").styled {
+                it.withColor(Formatting.GREEN).withBold(true)
+            }, 38, 7, 0, false
+        )
 
         context.drawText(manager.client.textRenderer, Text.literal("http://$host:$port").styled {
             it.withColor(Formatting.YELLOW)

@@ -15,9 +15,7 @@ fun Application.clientModule(client: MinecraftClient) {
 
         environment.monitor.subscribe(ApplicationStarted) {
             if (!ClientConfigManager.read().showToastNotification.disable) WebToast.show(
-                client.toastManager,
-                con[0].host,
-                con[0].port
+                client.toastManager, con[0].host, con[0].port
             )
         }
 

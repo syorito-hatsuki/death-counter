@@ -11,14 +11,12 @@ object WebClient {
     private lateinit var webClient: ApplicationEngine
 
     fun startWebClient(client: MinecraftClient) {
-        webClient = embeddedServer(
-            CIO,
+        webClient = embeddedServer(CIO,
             host = ClientConfigManager.read().webSetup.localAddress,
             port = ClientConfigManager.read().webSetup.servicePort,
             module = {
                 clientModule(client)
-            }
-        ).start()
+            }).start()
     }
 
     fun stopWebClient() = webClient.stop(1, 5, TimeUnit.SECONDS)

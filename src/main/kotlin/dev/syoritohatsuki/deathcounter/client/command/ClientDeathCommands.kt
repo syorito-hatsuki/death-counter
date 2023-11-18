@@ -4,7 +4,6 @@ import com.mojang.brigadier.Command
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.BoolArgumentType.bool
 import com.mojang.brigadier.arguments.BoolArgumentType.getBool
-import com.mojang.brigadier.arguments.IntegerArgumentType
 import com.mojang.brigadier.arguments.IntegerArgumentType.getInteger
 import com.mojang.brigadier.arguments.IntegerArgumentType.integer
 import com.mojang.brigadier.builder.LiteralArgumentBuilder.literal
