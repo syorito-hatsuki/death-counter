@@ -1,0 +1,36 @@
+{
+  "parent": "deathcounter:dead_inside/500_times",
+  "criteria": {
+    "trigger": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "stats": [
+              {
+                "type": "minecraft:custom",
+                "stat": "minecraft:deaths",
+                "value": {
+                  "min": 1000
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "display": {
+    "frame": "goal",
+    "description": {
+      "text": "Ascend to legendary status, conquering death a thousand times. Your journey is marked by indomitable will"
+    },
+    "icon": {
+      "item": "minecraft:piglin_head"
+    },
+    "title": {
+      "text": "Millennium Immortal"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "criteria": {
+    "trigger": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "stats": [
+              {
+                "type": "minecraft:custom",
+                "stat": "minecraft:deaths",
+                "value": {
+                  "min": 1
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "display": {
+    "background": "minecraft:textures/gui/advancements/backgrounds/adventure.png",
+    "description": {
+      "text": "Lets die together"
+    },
+    "icon": {
+      "item": "minecraft:player_head"
+    },
+    "title": {
+      "text": "Death Counter"
+    }
+  }
+}

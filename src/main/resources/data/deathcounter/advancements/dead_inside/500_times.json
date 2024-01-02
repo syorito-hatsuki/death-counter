@@ -1,0 +1,35 @@
+{
+  "parent": "deathcounter:dead_inside/100_times",
+  "criteria": {
+    "trigger": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "stats": [
+              {
+                "type": "minecraft:custom",
+                "stat": "minecraft:deaths",
+                "value": {
+                  "min": 500
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "display": {
+    "description": {
+      "text": "Conquer countless deaths, achieving the milestone of 500. Your tenacity knows no bounds"
+    },
+    "icon": {
+      "item": "minecraft:wither_skeleton_skull"
+    },
+    "title": {
+      "text": "Beyond the Abyss"
+    }
+  }
+}

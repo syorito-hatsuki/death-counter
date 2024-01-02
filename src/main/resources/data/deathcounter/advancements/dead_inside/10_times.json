@@ -1,0 +1,35 @@
+{
+  "parent": "deathcounter:dead_inside/root",
+  "criteria": {
+    "trigger": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "stats": [
+              {
+                "type": "minecraft:custom",
+                "stat": "minecraft:deaths",
+                "value": {
+                  "min": 10
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "display": {
+    "description": {
+      "text": "Embrace death for the 10th time. Persistence is key on this challenging journey"
+    },
+    "icon": {
+      "item": "minecraft:zombie_head"
+    },
+    "title": {
+      "text": "Decimation Apprentice"
+    }
+  }
+}

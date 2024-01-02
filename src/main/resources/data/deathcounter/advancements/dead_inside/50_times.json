@@ -1,0 +1,35 @@
+{
+  "parent": "deathcounter:dead_inside/10_times",
+  "criteria": {
+    "trigger": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "player": {
+          "type_specific": {
+            "type": "player",
+            "stats": [
+              {
+                "type": "minecraft:custom",
+                "stat": "minecraft:deaths",
+                "value": {
+                  "min": 50
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "display": {
+    "description": {
+      "text": "Confront mortality for the 50th time. Each fall strengthens your resolve"
+    },
+    "icon": {
+      "item": "minecraft:skeleton_skull"
+    },
+    "title": {
+      "text": "Death Seeker"
+    }
+  }
+}
