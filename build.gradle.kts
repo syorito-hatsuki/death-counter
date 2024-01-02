@@ -59,7 +59,7 @@ dependencies {
 
     include(modImplementation("maven.modrinth", "ducky-updater-lib", "2023.10.1"))
 
-    include(modImplementation("maven.modrinth", "fstats", "2023.11.2"))
+    include(modImplementation("maven.modrinth", "fstats", "2023.12.3"))
 
     include(modImplementation("maven.modrinth", "modmenu-badges-lib", "2023.6.1"))
 }
