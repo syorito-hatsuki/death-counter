@@ -11,8 +11,8 @@ import net.minecraft.command.argument.EntityArgumentType
 import net.minecraft.server.command.CommandManager.argument
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.MutableText
+import net.minecraft.text.PlainTextContent
 import net.minecraft.text.Text
-import net.minecraft.text.TextContent
 import net.minecraft.util.Formatting
 
 fun CommandDispatcher<ServerCommandSource>.serverSideCommands() {
@@ -30,7 +30,7 @@ fun CommandDispatcher<ServerCommandSource>.serverSideCommands() {
 private fun CommandContext<ServerCommandSource>.executeTopDeaths(): Int {
 
     source.sendFeedback({
-        MutableText.of(TextContent.EMPTY).apply {
+        MutableText.of(PlainTextContent.EMPTY).apply {
             append(Text.translatableWithFallback("message.top", "Top 5 players")
                 .styled { it.withColor(Formatting.YELLOW).withBold(true) })
             CacheManager.getTop().forEachIndexed { index, (name, count) ->
@@ -54,7 +54,7 @@ private fun CommandContext<ServerCommandSource>.executeDeathPage(): Int {
     val page = IntegerArgumentType.getInteger(this, "page")
 
     source.sendFeedback({
-        MutableText.of(TextContent.EMPTY).apply {
+        MutableText.of(PlainTextContent.EMPTY).apply {
             CacheManager.getPage(page).let { list ->
                 if (list.isEmpty()) append(Text.translatableWithFallback("message.page.empty", "Page is empty")) else {
 
@@ -82,7 +82,7 @@ private fun CommandContext<ServerCommandSource>.executeDeathPage(): Int {
 private fun CommandContext<ServerCommandSource>.executePlayerDeaths(): Int {
 
     val player: String = try {
-        EntityArgumentType.getPlayer(this, "playerEntity").entityName
+        EntityArgumentType.getPlayer(this, "playerEntity").name.literalString ?: return -1
     } catch (e: Exception) {
         StringArgumentType.getString(this, "playerName")
     }
