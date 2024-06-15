@@ -7,7 +7,7 @@ import net.minecraft.network.packet.CustomPayload
 import net.minecraft.util.Identifier
 
 object DeathPacket : CustomPayload {
-    private val PACKET_ID: CustomPayload.Id<DeathPacket> = CustomPayload.Id(Identifier(MOD_ID, "on_death"))
+    private val PACKET_ID: CustomPayload.Id<DeathPacket> = CustomPayload.Id(Identifier.of(MOD_ID, "on_death"))
     val PACKET_CODEC: PacketCodec<ByteBuf, DeathPacket> = PacketCodec.unit(DeathPacket)
 
     override fun getId(): CustomPayload.Id<DeathPacket> = PACKET_ID
