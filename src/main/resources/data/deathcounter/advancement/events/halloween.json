@@ -1,0 +1,21 @@
+{
+  "parent": "deathcounter:events/root",
+  "criteria": {
+    "custom_trigger": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "frame": "challenge",
+    "description": {
+      "text": "Cross over to the other side this Halloween"
+    },
+    "icon": {
+      "id": "minecraft:carved_pumpkin"
+    },
+    "title": {
+      "text": "Ghostly Goodbye"
+    },
+    "hidden": true
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "criteria": {
+    "custom_trigger": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "background": "minecraft:textures/block/sculk_sensor_bottom.png",
+    "description": {
+      "text": "Lets die on events"
+    },
+    "icon": {
+      "id": "minecraft:nether_star"
+    },
+    "title": {
+      "text": "Death Counter: Events"
+    }
+  }
+}
