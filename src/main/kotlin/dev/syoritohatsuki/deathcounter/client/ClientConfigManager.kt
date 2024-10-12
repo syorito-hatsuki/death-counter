@@ -19,7 +19,7 @@ object ClientConfigManager {
 
     init {
         if (!clientConfigDir.exists()) clientConfigDir.mkdirs()
-        clientConfigFile.writeText(clientConfigJson.encodeToString(ClientConfig()))
+        if (!clientConfigFile.exists()) clientConfigFile.writeText(clientConfigJson.encodeToString(ClientConfig()))
     }
 
     fun read() = clientConfigJson.decodeFromString<ClientConfig>(clientConfigFile.readText())
