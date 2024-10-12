@@ -27,7 +27,7 @@
       "text": "Ascend to legendary status, conquering death a thousand times. Your journey is marked by indomitable will"
     },
     "icon": {
-      "item": "minecraft:piglin_head"
+      "id": "minecraft:piglin_head"
     },
     "title": {
       "text": "Millennium Immortal"

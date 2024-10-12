@@ -1,5 +1,4 @@
 {
-  "parent": "deathcounter:dead_inside/100_times",
   "criteria": {
     "trigger": {
       "trigger": "minecraft:location",
@@ -12,7 +11,7 @@
                 "type": "minecraft:custom",
                 "stat": "minecraft:deaths",
                 "value": {
-                  "min": 500
+                  "min": 1
                 }
               }
             ]
@@ -22,14 +21,15 @@
     }
   },
   "display": {
+    "background": "minecraft:textures/gui/advancements/backgrounds/adventure.png",
     "description": {
-      "text": "Conquer countless deaths, achieving the milestone of 500. Your tenacity knows no bounds"
+      "text": "Lets die together"
     },
     "icon": {
-      "item": "minecraft:wither_skeleton_skull"
+      "id": "minecraft:player_head"
     },
     "title": {
-      "text": "Beyond the Abyss"
+      "text": "Death Counter"
     }
   }
 }

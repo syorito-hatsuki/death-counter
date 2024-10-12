@@ -1,5 +1,5 @@
 {
-  "parent": "deathcounter:dead_inside/1000_times",
+  "parent": "deathcounter:dead_inside/root",
   "criteria": {
     "trigger": {
       "trigger": "minecraft:location",
@@ -12,7 +12,7 @@
                 "type": "minecraft:custom",
                 "stat": "minecraft:deaths",
                 "value": {
-                  "min": 10000
+                  "min": 10
                 }
               }
             ]
@@ -22,15 +22,14 @@
     }
   },
   "display": {
-    "frame": "challenge",
     "description": {
-      "text": "Become a symbol of resurrection with 10,000 deaths. Embrace the cycle of life and death in Minecraft"
+      "text": "Embrace death for the 10th time. Persistence is key on this challenging journey"
     },
     "icon": {
-      "item": "minecraft:dragon_head"
+      "id": "minecraft:zombie_head"
     },
     "title": {
-      "text": "Eternal Phoenix"
+      "text": "Decimation Apprentice"
     }
   }
 }
