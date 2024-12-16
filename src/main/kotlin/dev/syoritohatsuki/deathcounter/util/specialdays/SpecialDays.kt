@@ -10,7 +10,7 @@ enum class SpecialDays(val from: LocalDate, val to: LocalDate, val path: String)
     ),
     CHRISTMAS(
         LocalDate.of(LocalDate.now().year, 12, 24),
-        LocalDate.of(LocalDate.now().year, 25, 25),
+        LocalDate.of(LocalDate.now().year, 12, 25),
         "events/christmas"
     ),
     NEW_YEAR(LocalDate.of(LocalDate.now().year, 1, 1), LocalDate.of(LocalDate.now().year, 1, 1), "events/new_year")
