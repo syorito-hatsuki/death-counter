@@ -24,13 +24,13 @@
   "display": {
     "frame": "goal",
     "description": {
-      "text": "Ascend to legendary status, conquering death a thousand times. Your journey is marked by indomitable will"
+      "translate": "advancements.dead_inside.1000_times.description"
     },
     "icon": {
       "id": "minecraft:piglin_head"
     },
     "title": {
-      "text": "Millennium Immortal"
+      "translate": "advancements.dead_inside.1000_times.title"
     }
   }
 }

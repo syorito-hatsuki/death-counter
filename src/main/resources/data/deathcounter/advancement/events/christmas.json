@@ -8,13 +8,13 @@
   "display": {
     "frame": "challenge",
     "description": {
-      "text": "Your holiday spirit lives on..."
+      "translate": "advancements.events.christmas.description"
     },
     "icon": {
       "id": "minecraft:sweet_berries"
     },
     "title": {
-      "text": "Last Gift Under the Tree"
+      "translate": "advancements.events.christmas.title"
     },
     "hidden": true
   }

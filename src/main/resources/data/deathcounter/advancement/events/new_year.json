@@ -8,13 +8,13 @@
   "display": {
     "frame": "challenge",
     "description": {
-      "text": "End the year with a bang!"
+      "translate": "advancements.events.new_year.description"
     },
     "icon": {
       "id": "minecraft:firework_rocket"
     },
     "title": {
-      "text": "Final Countdown"
+      "translate": "advancements.events.new_year.title"
     },
     "hidden": true
   }

@@ -23,13 +23,13 @@
   },
   "display": {
     "description": {
-      "text": "Celebrate resilience, reaching the 100th death. You're a true master of survival"
+      "translate": "advancements.dead_inside.100_times.description"
     },
     "icon": {
       "id": "minecraft:creeper_head"
     },
     "title": {
-      "text": "Centennial Survivor"
+      "translate": "advancements.dead_inside.100_times.title"
     }
   }
 }

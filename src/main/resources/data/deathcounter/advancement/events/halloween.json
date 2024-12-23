@@ -8,13 +8,13 @@
   "display": {
     "frame": "challenge",
     "description": {
-      "text": "Cross over to the other side this Halloween"
+      "translate": "advancements.events.halloween.description"
     },
     "icon": {
       "id": "minecraft:jack_o_lantern"
     },
     "title": {
-      "text": "Ghostly Goodbye"
+      "translate": "advancements.events.halloween.title"
     },
     "hidden": true
   }
