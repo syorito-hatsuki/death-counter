@@ -31,8 +31,9 @@ private fun CommandContext<ServerCommandSource>.executeTopDeaths(): Int {
 
     source.sendFeedback({
         MutableText.of(PlainTextContent.EMPTY).apply {
-            append(Text.translatableWithFallback("message.top", "Top 5 players")
-                .styled { it.withColor(Formatting.YELLOW).withBold(true) })
+            append(
+                Text.translatableWithFallback("message.top", "Top 5 players")
+                    .styled { it.withColor(Formatting.YELLOW).withBold(true) })
             CacheManager.getTop().forEachIndexed { index, (name, count) ->
                 append(Text.literal("\n${index + 1}. $name -> [$count]").styled {
                     when (index) {
@@ -58,17 +59,18 @@ private fun CommandContext<ServerCommandSource>.executeDeathPage(): Int {
             CacheManager.getPage(page).let { list ->
                 if (list.isEmpty()) append(Text.translatableWithFallback("message.page.empty", "Page is empty")) else {
 
-                    append(Text.translatableWithFallback("message.page", "DeathCounter Page [%d]", page).styled {
+                    append(Text.translatableWithFallback("message.page", "DeathCounter Page [${page}]", page).styled {
                         it.withColor(Formatting.YELLOW).withBold(true)
                     })
 
                     list.forEachIndexed { index, (name, count) ->
                         append(Text.literal("\n   "))
-                        append(Text.translatableWithFallback("message.other.die", "%s died %d times", name, count)
-                            .styled {
-                                if (index % 2 == 0) it.withColor(Formatting.RED)
-                                else it.withColor(Formatting.DARK_RED)
-                            })
+                        append(
+                            Text.translatableWithFallback("message.other.die", "$name died $count times", name, count)
+                                .styled {
+                                    if (index % 2 == 0) it.withColor(Formatting.RED)
+                                    else it.withColor(Formatting.DARK_RED)
+                                })
                     }
 
                 }
@@ -89,7 +91,10 @@ private fun CommandContext<ServerCommandSource>.executePlayerDeaths(): Int {
 
     source.sendFeedback({
         Text.translatableWithFallback(
-            "message.other.die", "%s died %d times", player, CacheManager.getByPlayerName(player)
+            "message.other.die",
+            "$player died ${CacheManager.getByPlayerName(player)} times",
+            player,
+            CacheManager.getByPlayerName(player)
         )
     }, false)
 
