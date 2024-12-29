@@ -60,7 +60,7 @@ dependencies {
 
     include(implementation("org.jetbrains.kotlinx", "kotlinx-html-jvm", "0.9.1"))
 
-    include(modImplementation("maven.modrinth", "ducky-updater-lib", "2023.10.1"))
+    include(modImplementation("maven.modrinth", "ducky-updater-lib", "2024.10.2"))
 
     include(modImplementation("maven.modrinth", "fstats", "2023.12.3"))
 

@@ -46,7 +46,7 @@
     "deathcounter.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.20",
+    "fabricloader": "*",
     "fabric": "*",
     "fabric-language-kotlin": "*",
     "minecraft": ">=1.21",
