@@ -1,0 +1,21 @@
+{
+  "parent": "deathcounter:events/root",
+  "criteria": {
+    "custom_trigger": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "frame": "challenge",
+    "description": {
+      "translate": "advancements.events.new_year.description"
+    },
+    "icon": {
+      "id": "minecraft:firework_rocket"
+    },
+    "title": {
+      "translate": "advancements.events.new_year.title"
+    },
+    "hidden": true
+  }
+}

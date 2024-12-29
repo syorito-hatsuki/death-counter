@@ -9,7 +9,8 @@
     "Nikson"
   ],
   "contact": {
-    "homepage": "https://syoritohatsuki.dev/"
+    "homepage": "https://syorito-hatsuki.dev/",
+    "discord": "https://discord.gg/pbwnMwnUD6"
   },
   "license": "MIT Licence",
   "icon": "assets/deathcounter/icon.png",
@@ -45,7 +46,7 @@
     "deathcounter.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.20",
+    "fabricloader": "*",
     "fabric": "*",
     "fabric-language-kotlin": "*",
     "minecraft": ">=1.20",

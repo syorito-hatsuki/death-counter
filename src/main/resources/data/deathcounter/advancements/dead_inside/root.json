@@ -23,13 +23,13 @@
   "display": {
     "background": "minecraft:textures/gui/advancements/backgrounds/adventure.png",
     "description": {
-      "text": "Lets die together"
+      "translate": "advancements.dead_inside.root.description"
     },
     "icon": {
       "item": "minecraft:player_head"
     },
     "title": {
-      "text": "Death Counter"
+      "translate": "advancements.dead_inside.root.title"
     }
   }
 }

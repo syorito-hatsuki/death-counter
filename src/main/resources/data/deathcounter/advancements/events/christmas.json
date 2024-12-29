@@ -1,0 +1,21 @@
+{
+  "parent": "deathcounter:events/root",
+  "criteria": {
+    "custom_trigger": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "display": {
+    "frame": "challenge",
+    "description": {
+      "translate": "advancements.events.christmas.description"
+    },
+    "icon": {
+      "id": "minecraft:sweet_berries"
+    },
+    "title": {
+      "translate": "advancements.events.christmas.title"
+    },
+    "hidden": true
+  }
+}

@@ -23,13 +23,13 @@
   },
   "display": {
     "description": {
-      "text": "Conquer countless deaths, achieving the milestone of 500. Your tenacity knows no bounds"
+      "translate": "advancements.dead_inside.500_times.description"
     },
     "icon": {
       "item": "minecraft:wither_skeleton_skull"
     },
     "title": {
-      "text": "Beyond the Abyss"
+      "translate": "advancements.dead_inside.500_times.title"
     }
   }
 }
