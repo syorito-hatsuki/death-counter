@@ -8,10 +8,11 @@ import java.util.concurrent.TimeUnit
 
 object WebClient {
 
-    private lateinit var webClient: ApplicationEngine
+    private lateinit var webClient: EmbeddedServer<CIOApplicationEngine, CIOApplicationEngine.Configuration>
 
     fun startWebClient(client: MinecraftClient) {
-        webClient = embeddedServer(CIO,
+        webClient = embeddedServer(
+            factory = CIO,
             host = ClientConfigManager.read().webSetup.localAddress,
             port = ClientConfigManager.read().webSetup.servicePort,
             module = {
