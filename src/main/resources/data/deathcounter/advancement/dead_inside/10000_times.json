@@ -24,13 +24,13 @@
   "display": {
     "frame": "challenge",
     "description": {
-      "text": "Become a symbol of resurrection with 10,000 deaths. Embrace the cycle of life and death in Minecraft"
+      "translate": "advancements.dead_inside.10000_times.description"
     },
     "icon": {
       "id": "minecraft:dragon_head"
     },
     "title": {
-      "text": "Eternal Phoenix"
+      "translate": "advancements.dead_inside.10000_times.title"
     }
   }
 }

@@ -8,13 +8,13 @@
   "display": {
     "frame": "challenge",
     "description": {
-      "translate": "advancements.events.halloween.description"
+      "translate": "advancements.events.new_year.description"
     },
     "icon": {
-      "id": "minecraft:jack_o_lantern"
+      "id": "minecraft:firework_rocket"
     },
     "title": {
-      "translate": "advancements.events.halloween.title"
+      "translate": "advancements.events.new_year.title"
     },
     "hidden": true
   }

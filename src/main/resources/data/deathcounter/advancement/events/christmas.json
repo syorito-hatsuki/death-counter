@@ -8,13 +8,13 @@
   "display": {
     "frame": "challenge",
     "description": {
-      "translate": "advancements.events.halloween.description"
+      "translate": "advancements.events.christmas.description"
     },
     "icon": {
-      "id": "minecraft:jack_o_lantern"
+      "id": "minecraft:sweet_berries"
     },
     "title": {
-      "translate": "advancements.events.halloween.title"
+      "translate": "advancements.events.christmas.title"
     },
     "hidden": true
   }

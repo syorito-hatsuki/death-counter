@@ -23,13 +23,13 @@
   },
   "display": {
     "description": {
-      "text": "Confront mortality for the 50th time. Each fall strengthens your resolve"
+      "translate": "advancements.dead_inside.50_times.description"
     },
     "icon": {
       "id": "minecraft:skeleton_skull"
     },
     "title": {
-      "text": "Death Seeker"
+      "translate": "advancements.dead_inside.50_times.title"
     }
   }
 }
