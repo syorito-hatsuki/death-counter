@@ -9,7 +9,6 @@
     "ServerPlayerEntityMixin"
   ],
   "client": [
-    "ClientPlayNetworkHandlerMixin",
-    "accessor.ClientCommonNetworkHandlerAccessor"
+    "ClientPlayNetworkHandlerMixin"
   ]
 }

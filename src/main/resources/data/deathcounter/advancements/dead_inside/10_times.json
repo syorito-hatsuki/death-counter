@@ -23,13 +23,13 @@
   },
   "display": {
     "description": {
-      "text": "Embrace death for the 10th time. Persistence is key on this challenging journey"
+      "translate": "advancements.dead_inside.10_times.description"
     },
     "icon": {
       "item": "minecraft:zombie_head"
     },
     "title": {
-      "text": "Decimation Apprentice"
+      "translate": "advancements.dead_inside.10_times.title"
     }
   }
 }
