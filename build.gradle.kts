@@ -58,13 +58,13 @@ dependencies {
     include(implementation("io.ktor", "ktor-utils-jvm", ktorVersion))
     include(implementation("io.ktor", "ktor-server-html-builder-jvm", ktorVersion))
 
-    include(implementation("org.jetbrains.kotlinx", "kotlinx-html-jvm", "0.9.1"))
+    include(implementation("org.jetbrains.kotlinx", "kotlinx-html-jvm", "0.12.0"))
 
-    include(modImplementation("maven.modrinth", "ducky-updater-lib", "2024.10.2"))
+    include(modImplementation("maven.modrinth", "ducky-updater-lib", "2025.3.1"))
 
-    include(modImplementation("maven.modrinth", "fstats", "2023.12.3"))
+    include(modImplementation("maven.modrinth", "fstats", "72p6jc6r"))
 
-    include(modImplementation("maven.modrinth", "modmenu-badges-lib", "2023.6.1"))
+    include(modImplementation("maven.modrinth", "modmenu-badges-lib", "2025.4.1"))
 }
 
 tasks {
