@@ -1,3 +1,4 @@
+import com.modrinth.minotaur.TaskModrinthUpload
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -5,6 +6,7 @@ plugins {
     id("fabric-loom")
     kotlin("jvm")
     kotlin("plugin.serialization")
+    id("com.modrinth.minotaur")
 }
 
 val minecraftVersion: String by project
@@ -60,21 +62,42 @@ dependencies {
 
     include(implementation("org.jetbrains.kotlinx", "kotlinx-html-jvm", "0.12.0"))
 
-    include(modImplementation("maven.modrinth", "ducky-updater-lib", "2025.3.1"))
+    include(modImplementation("maven.modrinth", "ducky-updater-lib", "2025.6.1"))
 
-    include(modImplementation("maven.modrinth", "fstats", "72p6jc6r"))
+    include(modImplementation("maven.modrinth", "fstats", "2025.6.1"))
 
-    include(modImplementation("maven.modrinth", "modmenu-badges-lib", "2025.4.1"))
+    include(modImplementation("maven.modrinth", "modmenu-badges-lib", "2025.6.1"))
+}
+
+modrinth {
+    token.set(System.getenv("MODRINTH_TOKEN"))
+    projectId.set("death-counter")
+    versionName.set("Death Counter $modVersion")
+    versionNumber.set(modVersion)
+    versionType.set("release")
+    uploadFile.set(tasks.remapJar)
+    additionalFiles.add(tasks.remapSourcesJar)
+    gameVersions.addAll("1.21.6")
+    loaders.add("fabric")
+    changelog.set(rootProject.file("CHANGELOG.md").readText())
+    dependencies {
+        required.project("fabric-api", "fabric-language-kotlin")
+        embedded.project("fstats", "modmenu-badges-lib", "ducky-updater-lib")
+    }
 }
 
 tasks {
     val javaVersion = JavaVersion.VERSION_21
 
-    withType<JavaCompile> {
-        options.encoding = "UTF-8"
-        sourceCompatibility = javaVersion.toString()
-        targetCompatibility = javaVersion.toString()
-        options.release.set(javaVersion.toString().toInt())
+    named("modrinth").configure {
+        @Suppress("UnstableApiUsage") doLast {
+            (this@configure as TaskModrinthUpload).uploadInfo?.let {
+                "https://modrinth.com/mod/death-counter/version/${it.id}".apply {
+                    println(this)
+                    rootProject.file("build/modrinth_url.txt").writeText(this)
+                }
+            } ?: return@doLast
+        }
     }
 
     withType<KotlinCompile> {

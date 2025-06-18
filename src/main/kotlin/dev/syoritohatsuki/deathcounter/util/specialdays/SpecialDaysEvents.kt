@@ -12,7 +12,7 @@ object SpecialDaysEvents {
     fun grand(playerEntity: ServerPlayerEntity) {
         SpecialDays.entries.forEach { day ->
             if (isDateInRange(day.from, day.to)) {
-                playerEntity.server.advancementLoader[Identifier.of(DeathCounter.MOD_ID, day.path)]?.let {
+                playerEntity.server?.advancementLoader[Identifier.of(DeathCounter.MOD_ID, day.path)]?.let {
                     val tracker = playerEntity.advancementTracker
                     val progress = tracker.getProgress(it)
                     progress.unobtainedCriteria.takeIf { !progress.isDone }?.forEach { criterion ->
