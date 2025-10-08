@@ -42,6 +42,7 @@
       }
     ]
   },
+  "accessWidener": "deathcounter.accesswidener",
   "mixins": [
     "deathcounter.mixins.json"
   ],

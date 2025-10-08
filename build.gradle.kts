@@ -22,6 +22,10 @@ version = modVersion
 val mavenGroup: String by project
 group = mavenGroup
 
+loom {
+    accessWidenerPath = File("src/main/resources/deathcounter.accesswidener")
+}
+
 repositories {
     maven("https://api.modrinth.com/maven") {
         name = "Modrinth"
