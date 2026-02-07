@@ -66,11 +66,11 @@ dependencies {
 
     include(implementation("org.jetbrains.kotlinx", "kotlinx-html-jvm", "0.12.0"))
 
-    include(modImplementation("maven.modrinth", "ducky-updater-lib", "2025.10.1"))
+    include(modImplementation("maven.modrinth", "ducky-updater-lib", "2026.1.1"))
 
-    include(modImplementation("maven.modrinth", "fstats", "2025.6.1"))
+    include(modImplementation("maven.modrinth", "fstats", "2026.1.1"))
 
-    include(modImplementation("maven.modrinth", "modmenu-badges-lib", "2025.6.1"))
+    include(modImplementation("maven.modrinth", "modmenu-badges-lib", "2026.2.1"))
 }
 
 modrinth {
@@ -81,7 +81,7 @@ modrinth {
     versionType.set("release")
     uploadFile.set(tasks.remapJar)
     additionalFiles.add(tasks.remapSourcesJar)
-    gameVersions.addAll("1.21.8", "1.21.10")
+    gameVersions.addAll("1.21.11")
     loaders.add("fabric")
     changelog.set(rootProject.file("CHANGELOG.md").readText())
     dependencies {
